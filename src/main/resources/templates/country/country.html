@@ -1,0 +1,35 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
+
+<section layout:fragment="content">
+        <div class="container">
+            <div class="row">
+                <p>
+                    <a href="addCountry" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>Agregar</a>
+                </p>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                    <th>Id</th>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Fecha Agregada</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    </thead>
+                    <tbody>                   
+                            <tr th:each="country: ${countryList}">
+                                <td th:text="${country.id}"></td>
+                                <td th:text="${country.code}"/></td>
+                                <td th:text="${country.description}"/></td>
+                                <td th:text="${country.creation_date}"/></td>                                                                                          
+                                    <td><a class="btn btn-primary btn-xs"
+								     th:href="@{/editCountry/} + ${country.id}" th:text="'editar'"></a></td>
+                                    <td><a class="btn btn-danger btn-xs"
+								     th:href="@{/deleteCountry/} + ${country.id}" th:text="'eliminar'"
+								     onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
+                            </tr >
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</section>       
