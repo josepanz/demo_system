@@ -1,0 +1,39 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
+
+    <section layout:fragment="content">
+        <div class="container">
+            <div class="row">
+                <p>
+                    <a href="addProductSize" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>Agregar</a>
+                </p>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                    <th>Id</th>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Tamaño</th>
+                    <th>Activo</th>
+                    <th>Fecha Agregada</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    </thead>
+                    <tbody>                   
+                        <tr th:each="productSize: ${productSizeList}">
+                            <td th:text="${productSize.id}"></td>
+                            <td th:text="${productSize.code}"/></td>
+                            <td th:text="${productSize.description}"/></td>
+                            <td th:text="${productSize.size}"/></td>
+                            <td th:text="${productSize.active}"/></td>
+                            <td th:text="${productSize.creation_date}"/></td>                                                                                          
+                            <td><a class="btn btn-primary btn-xs"
+                                   th:href="@{/editProductSize/} + ${productSize.id}" th:text="'editar'"></a></td>
+                            <td><a class="btn btn-danger btn-xs"
+                                   th:href="@{/deleteProductSize/} + ${productSize.id}" th:text="'eliminar'"
+                                   onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
+                        </tr >
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>       

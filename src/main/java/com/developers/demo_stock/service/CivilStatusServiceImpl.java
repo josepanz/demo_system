@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.developers.demo_stock.entity.ProductFamily;
-import com.developers.demo_stock.repository.ProductFamilyRepository;
+import com.developers.demo_stock.entity.CivilStatus;
+import com.developers.demo_stock.repository.CivilStatusRepository;
 
 @Service
-public class ProductFamilyImpl implements ProductFamilyService {
+public class CivilStatusServiceImpl implements CivilStatusService {
     //inyeccion de dependecia
 
     /*@Transaccional: si interactua con la base de datos.
@@ -18,32 +18,32 @@ public class ProductFamilyImpl implements ProductFamilyService {
 	 transaccional dentro de la misma clase, 
 	 no se iniciara una transaccion.*/
     @Autowired
-    ProductFamilyRepository productFamilyRepo;
+    CivilStatusRepository civilStatusRepo;
 
     /*transacción readonly puede ser utilizada cuando quieres que tu código lea pero no modifique ningún dato*/
     @Override
     @Transactional(readOnly = true)
-    public Iterable<ProductFamily> getAllProductFamily() {
-        return productFamilyRepo.findAll();
+    public Iterable<CivilStatus> getAllCivilStatus() {
+        return civilStatusRepo.findAll();
     }
 
     @Override
     @Transactional
     public void delete(Integer id) {
-        productFamilyRepo.deleteById(id);
+        civilStatusRepo.deleteById(id);
     }
 
     @Override
     @Transactional
-    public void save(ProductFamily productFamily) {
-        productFamilyRepo.save(productFamily);
+    public void save(CivilStatus civilStatus) {
+        civilStatusRepo.save(civilStatus);
 
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<ProductFamily> findById(Integer id) {
-        return productFamilyRepo.findById(id);
+    public Optional<CivilStatus> findById(Integer id) {
+        return civilStatusRepo.findById(id);
     }
 
 }

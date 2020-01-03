@@ -1,20 +1,17 @@
 package com.developers.demo_stock.service;
 
-
-
 import java.util.Optional;
-
 
 import com.developers.demo_stock.entity.Country;
 
-public interface CountryService  {
-	
-public Iterable<Country> getAllCountry();
+public interface CountryService {
 
-public void save(Country country);
+    public Iterable<Country> getAllCountry();
 
-public void delete(Integer id);
+    public void save(Country country);
 
-public Optional<Country> findById(Integer id);
+    public void delete(Integer id);
+
+    public Optional<Country> findById(Integer id);
 
 }

@@ -11,40 +11,39 @@ import com.developers.demo_stock.repository.CountryRepository;
 
 @Service
 public class CountryServiceImpl implements CountryService {
-	//inyeccion de dependecia
-	
-	/*@Transaccional: si interactua con la base de datos.
+    //inyeccion de dependecia
+
+    /*@Transaccional: si interactua con la base de datos.
 	 si un metodo no transaccional llama a un metodo 
 	 transaccional dentro de la misma clase, 
 	 no se iniciara una transaccion.*/
-	
-	@Autowired
-	CountryRepository countryRepo;
-	
-	/*transacción readonly puede ser utilizada cuando quieres que tu código lea pero no modifique ningún dato*/
-	@Override
-	@Transactional(readOnly = true)
-	public Iterable<Country> getAllCountry() {
-		return countryRepo.findAll();
-	}
+    @Autowired
+    CountryRepository countryRepo;
 
-	@Override
-	@Transactional
-	public void delete(Integer id) {
-		countryRepo.deleteById(id);		
-	}
+    /*transacción readonly puede ser utilizada cuando quieres que tu código lea pero no modifique ningún dato*/
+    @Override
+    @Transactional(readOnly = true)
+    public Iterable<Country> getAllCountry() {
+        return countryRepo.findAll();
+    }
 
-	@Override
-	@Transactional
-	public void save(Country country) {
-		countryRepo.save(country);
-		
-	}
+    @Override
+    @Transactional
+    public void delete(Integer id) {
+        countryRepo.deleteById(id);
+    }
 
-	@Override
-	@Transactional(readOnly = true)
-	public Optional<Country> findById(Integer id) {	
-		return countryRepo.findById(id);
-	}		
+    @Override
+    @Transactional
+    public void save(Country country) {
+        countryRepo.save(country);
+
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Country> findById(Integer id) {
+        return countryRepo.findById(id);
+    }
 
 }

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Country {
+public class ProductSize {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
@@ -31,11 +31,17 @@ public class Country {
     @Size(max = 50, message = "Tamaño no permitido")
     private String description;
 
+    @Column
+    private double size;
+
+    @Column
+    private boolean active;
+
     @Temporal(TemporalType.DATE)
     @Column
     private Date creation_date;
 
-    public Country() {
+    public ProductSize() {
 
     }
 
@@ -76,10 +82,26 @@ public class Country {
         this.creation_date = creation_date;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
+    }
+
     @Override
     public String toString() {
-        return "Country [id=" + id + ", code=" + code + ", description=" + description + ", creation_date="
-                + creation_date + "]";
+        return "ProductSize [id=" + id + ", code=" + code + ", description=" + description + ", active=" + active + ", creation_date="
+                + creation_date + ", size="+size+ "]";
     }
 
     @Override
@@ -104,7 +126,7 @@ public class Country {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Country other = (Country) obj;
+        ProductSize other = (ProductSize) obj;
         if (code == null) {
             if (other.code != null) {
                 return false;
@@ -126,6 +148,7 @@ public class Country {
         } else if (!description.equals(other.description)) {
             return false;
         }
+
         if (id != other.id) {
             return false;
         }

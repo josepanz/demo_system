@@ -1,20 +1,17 @@
 package com.developers.demo_stock.service;
 
-
-
 import java.util.Optional;
-
 
 import com.developers.demo_stock.entity.ProductBrand;
 
-public interface ProductBrandService  {
-	
-public Iterable<ProductBrand> getAllProductBrand();
+public interface ProductBrandService {
 
-public void save(ProductBrand productBrand);
+    public Iterable<ProductBrand> getAllProductBrand();
 
-public void delete(Integer id);
+    public void save(ProductBrand productBrand);
 
-public Optional<ProductBrand> findById(Integer id);
+    public void delete(Integer id);
+
+    public Optional<ProductBrand> findById(Integer id);
 
 }
