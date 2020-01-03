@@ -1,7 +1,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
+      layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
 
-<section layout:fragment="content">
+    <section layout:fragment="content">
         <div class="container">
             <div class="row">
                 <p>
@@ -18,20 +18,20 @@
                     <th>Eliminar</th>
                     </thead>
                     <tbody>                   
-                            <tr th:each="productBrand: ${productBrandList}">
-                                <td th:text="${productBrand.id}"></td>
-                                <td th:text="${productBrand.code}"/></td>
-                                <td th:text="${productBrand.name}"/></td>
-                                <td th:text="${productBrand.active}"/></td>
-                                <td th:text="${productBrand.creation_date}"/></td>                                                                                          
-                                    <td><a class="btn btn-primary btn-xs"
-								     th:href="@{/editProductBrand/} + ${productBrand.id}" th:text="'editar'"></a></td>
-                                    <td><a class="btn btn-danger btn-xs"
-								     th:href="@{/deleteProductBrand/} + ${productBrand.id}" th:text="'eliminar'"
-								     onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
-                            </tr >
+                        <tr th:each="productBrand: ${productBrandList}">
+                            <td th:text="${productBrand.id}"></td>
+                            <td th:text="${productBrand.code}"/></td>
+                            <td th:text="${productBrand.name}"/></td>
+                            <td th:text="${productBrand.active}"/></td>
+                            <td th:text="${productBrand.creation_date}"/></td>                                                                                          
+                            <td><a class="btn btn-primary btn-xs"
+                                   th:href="@{/editProductBrand/} + ${productBrand.id}" th:text="'editar'"></a></td>
+                            <td><a class="btn btn-danger btn-xs"
+                                   th:href="@{/deleteProductBrand/} + ${productBrand.id}" th:text="'eliminar'"
+                                   onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
+                        </tr >
                     </tbody>
                 </table>
             </div>
         </div>
-</section>       
+    </section>       
