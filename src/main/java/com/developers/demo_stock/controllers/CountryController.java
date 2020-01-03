@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-
+import org.springframework.web.method.annotation.ModelAttributeMethodProcessor;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.developers.demo_stock.entity.Country;
 import com.developers.demo_stock.service.CountryService;
@@ -48,23 +49,21 @@ public class CountryController {
 	}
 	@PostMapping("/addCountry")
 	public String postCountry(@Valid @ModelAttribute("country") Country country, BindingResult result, Model model,
-			SessionStatus status) {
+			SessionStatus status, RedirectAttributes flash) {		
 		model.addAttribute("title", "Agregar País");
 		if (result.hasErrors()) {
 			return "country/addCountry";
 		}
-		try {
-
+		try {    
 			countryService.save(country);
-			status.setComplete();
-			model.addAttribute("success", "Pais agregado con éxito!");
-			model.addAttribute("country", new Country());
-
+			status.setComplete();		
+			flash.addFlashAttribute("success", "Pais agregado con éxito!");		
 		} catch (Exception e) {
-			model.addAttribute("error", e.getMessage());
+			flash.addFlashAttribute("error", e.getMessage());
 		}
-		return "country/addCountry";
+		return "redirect:/addCountry";
 	}
+	
 
 	@GetMapping("/editCountry/{id}")
 	public String getEditCountry(@PathVariable(value = "id") Integer id, Map<String, Object> model) {		
@@ -86,7 +85,7 @@ public class CountryController {
 		}		
 		try {
 			countryService.save(country);            
-			status.setComplete();
+			status.setComplete();		
 			flash.addFlashAttribute("success", "Pais editado con éxito!");			
 		} catch (Exception e) {
 			flash.addFlashAttribute("error", e.getMessage());

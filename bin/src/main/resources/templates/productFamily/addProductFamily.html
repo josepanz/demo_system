@@ -1,14 +1,14 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
-    <section layout:fragment="content">
 
+    <section layout:fragment="content">
         <div class="container py-4">
             <div class="card bg-dark text-white">
                 <div class="card-header">
-                    <h2>Editar Pais <a href="..\country" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a></h2>
+                    <h2>Agregar Marca de Producto <a href="productFamily" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a></h2>
                 </div>
                 <div class="card-body">
-                    <form th:action="@{/editCountry}" th:object="${country}" method="post">
+                    <form th:action="@{/addProductFamily}" th:object="${productFamily}" method="post">
                         <div class="form-group row">
                             <label for="code" class="col-sm-2 col-form-label">Código</label>
                             <div class="col-sm-6">
@@ -20,9 +20,9 @@
                         <div class="form-group row">
                             <label for="description" class="col-sm-2 col-form-label">Descripción</label>
                             <div class="col-sm-6">
-                                <input type="text" th:field="*{description}" class="form-control"
+                                <input type="text" th:field="*{name}" class="form-control"
                                        th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
-                                       th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+                                       th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
                             </div>
                         </div>
                         <div class="form-group row" >
