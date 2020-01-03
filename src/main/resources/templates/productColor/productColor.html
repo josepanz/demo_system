@@ -1,0 +1,37 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
+
+    <section layout:fragment="content">
+        <div class="container">
+            <div class="row">
+                <p>
+                    <a href="addProductColor" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>Agregar</a>
+                </p>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                    <th>Id</th>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Activo</th>
+                    <th>Fecha Agregada</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    </thead>
+                    <tbody>                   
+                        <tr th:each="productColor: ${productColorList}">
+                            <td th:text="${productColor.id}"></td>
+                            <td th:text="${productColor.code}"/></td>
+                            <td th:text="${productColor.name}"/></td>
+                            <td th:text="${productColor.active}"/></td>
+                            <td th:text="${productColor.creation_date}"/></td>                                                                                          
+                            <td><a class="btn btn-primary btn-xs"
+                                   th:href="@{/editProductColor/} + ${productColor.id}" th:text="'editar'"></a></td>
+                            <td><a class="btn btn-danger btn-xs"
+                                   th:href="@{/deleteProductColor/} + ${productColor.id}" th:text="'eliminar'"
+                                   onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
+                        </tr >
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>       

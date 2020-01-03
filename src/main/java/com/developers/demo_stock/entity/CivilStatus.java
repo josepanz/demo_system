@@ -14,17 +14,13 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Country {
+public class CivilStatus {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column
-    @NotEmpty
-    @Size(max = 50, message = "Tamaño no permitido")
-    private String code;
 
     @Column
     @NotEmpty
@@ -35,7 +31,7 @@ public class Country {
     @Column
     private Date creation_date;
 
-    public Country() {
+    public CivilStatus() {
 
     }
 
@@ -50,14 +46,6 @@ public class Country {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getDescription() {
@@ -78,7 +66,7 @@ public class Country {
 
     @Override
     public String toString() {
-        return "Country [id=" + id + ", code=" + code + ", description=" + description + ", creation_date="
+        return "CivilStatus [id=" + id +  ", description=" + description + ", creation_date="
                 + creation_date + "]";
     }
 
@@ -86,7 +74,6 @@ public class Country {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((code == null) ? 0 : code.hashCode());
         result = prime * result + ((creation_date == null) ? 0 : creation_date.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + id;
@@ -104,14 +91,8 @@ public class Country {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Country other = (Country) obj;
-        if (code == null) {
-            if (other.code != null) {
-                return false;
-            }
-        } else if (!code.equals(other.code)) {
-            return false;
-        }
+        CivilStatus other = (CivilStatus) obj;
+
         if (creation_date == null) {
             if (other.creation_date != null) {
                 return false;

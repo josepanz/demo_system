@@ -5,9 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductBrandRepository extends CrudRepository<ProductBrand, Integer>{
-	
-/*tiene metodos, pero si queremos crear nuestros propios metodos los creamos aqui*/
-	
-	
+public interface ProductBrandRepository extends CrudRepository<ProductBrand, Integer> {
+
+    /*tiene metodos, pero si queremos crear nuestros propios metodos los creamos aqui*/
 }

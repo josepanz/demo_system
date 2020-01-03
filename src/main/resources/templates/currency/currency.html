@@ -1,0 +1,39 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
+
+    <section layout:fragment="content">
+        <div class="container">
+            <div class="row">
+                <p>
+                    <a href="addCurrency" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>Agregar</a>
+                </p>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                    <th>Id</th>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Simbolo</th>
+                    <th>Activo</th>
+                    <th>Fecha Agregada</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    </thead>
+                    <tbody>                   
+                        <tr th:each="currency: ${currencyList}">
+                            <td th:text="${currency.id}"></td>
+                            <td th:text="${currency.code}"/></td>
+                            <td th:text="${currency.description}"/></td>
+                            <td th:text="${currency.symbol}"/></td>
+                            <td th:text="${currency.active}"/></td>
+                            <td th:text="${currency.creation_date}"/></td>                                                                                          
+                            <td><a class="btn btn-primary btn-xs"
+                                   th:href="@{/editCurrency/} + ${currency.id}" th:text="'editar'"></a></td>
+                            <td><a class="btn btn-danger btn-xs"
+                                   th:href="@{/deleteCurrency/} + ${currency.id}" th:text="'eliminar'"
+                                   onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
+                        </tr >
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>       

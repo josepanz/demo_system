@@ -14,7 +14,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Country {
+public class ProductColor {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
@@ -29,13 +29,16 @@ public class Country {
     @Column
     @NotEmpty
     @Size(max = 50, message = "Tamaño no permitido")
-    private String description;
+    private String name;
+    
+    @Column
+    private boolean active;
 
     @Temporal(TemporalType.DATE)
     @Column
     private Date creation_date;
 
-    public Country() {
+    public ProductColor() {
 
     }
 
@@ -60,12 +63,12 @@ public class Country {
         this.code = code;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getCreation_date() {
@@ -76,10 +79,20 @@ public class Country {
         this.creation_date = creation_date;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+
+
     @Override
     public String toString() {
-        return "Country [id=" + id + ", code=" + code + ", description=" + description + ", creation_date="
-                + creation_date + "]";
+        return "ProductColor [id=" + id + ", code=" + code + ", name=" + name + ", active=" + active + ", creation_date="
+                + creation_date +"]";
     }
 
     @Override
@@ -88,7 +101,7 @@ public class Country {
         int result = 1;
         result = prime * result + ((code == null) ? 0 : code.hashCode());
         result = prime * result + ((creation_date == null) ? 0 : creation_date.hashCode());
-        result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + id;
         return result;
     }
@@ -104,7 +117,7 @@ public class Country {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Country other = (Country) obj;
+        ProductColor other = (ProductColor) obj;
         if (code == null) {
             if (other.code != null) {
                 return false;
@@ -119,13 +132,14 @@ public class Country {
         } else if (!creation_date.equals(other.creation_date)) {
             return false;
         }
-        if (description == null) {
-            if (other.description != null) {
+        if (name == null) {
+            if (other.name != null) {
                 return false;
             }
-        } else if (!description.equals(other.description)) {
+        } else if (!name.equals(other.name)) {
             return false;
         }
+
         if (id != other.id) {
             return false;
         }

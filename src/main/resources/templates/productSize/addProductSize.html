@@ -1,14 +1,14 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
-    <section layout:fragment="content">
 
+    <section layout:fragment="content">
         <div class="container py-4">
             <div class="card bg-dark text-white">
                 <div class="card-header">
-                    <h2>Editar Marca de Producto <a href="..\productBrand" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a></h2>
+                    <h2>Agregar Tamaño de Producto <a href="productSize" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a></h2>
                 </div>
                 <div class="card-body">
-                    <form th:action="@{/editProductBrand}" th:object="${productBrand}" method="post">
+                    <form th:action="@{/addProductSize}" th:object="${productSize}" method="post">
                         <div class="form-group row">
                             <label for="code" class="col-sm-2 col-form-label">Código</label>
                             <div class="col-sm-6">
@@ -18,22 +18,19 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="name" class="col-sm-2 col-form-label">Nombre</label>
+                            <label for="description" class="col-sm-2 col-form-label">Descripción</label>
                             <div class="col-sm-6">
-                                <input type="text" th:field="*{name}" class="form-control"
+                                <input type="text" th:field="*{description}" class="form-control"
                                        th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
-                                       th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                                       th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="active" class="col-sm-2 col-form-label">Activo</label>
+                            <label for="size" class="col-sm-2 col-form-label">Tamaño</label>
                             <div class="col-sm-6">
-                                <select th:field="*{active}" class="form-control"
-                                        th:errorclass="'form-control alert-danger'">
-                                    <option value="true" selected="true">Activo</option>
-                                    <option value="false">Inactivo</option>
-                                </select>
-                             <small class="form-text text-danger" th:if="${#fields.hasErrors('active')}" th:errors="*{active}"></small>
+                                <input  type="number" step="0.01" th:field="*{size}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('size')}" th:errors="*{size}"></small>
                             </div>
                         </div>
                         <div class="form-group row" >

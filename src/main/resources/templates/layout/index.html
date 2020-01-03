@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head>
-        <meta charset="ISO-8859-1">
+        <meta charset="UTF-8">
         <title th:text="${title}"></title>
 
         <link rel="stylesheet"
@@ -65,6 +65,8 @@
                                     <a id="productPresentationId" href="productPresentation.htm" class="list-group-item-action bg-success text-white" >Presentaciones de Productos</a>
                                     <a id="productFamilyId" href="productFamily" class="list-group-item-action bg-success text-white" >Familia de Productos</a>
                                     <a id="productBrandId" href="productBrand" class="list-group-item-action bg-success text-white" >Marca de Productos</a>
+                                    <a id="productColorId" href="productColor" class="list-group-item-action bg-success text-white" >Color de Productos</a>
+                                    <a id="productSizeId" href="productSize" class="list-group-item-action bg-success text-white" >Tamaño de Productos</a>
                                 </div>
                             </div>
                         </div>
@@ -196,25 +198,25 @@
             <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
             <!-- Menu Toggle Script -->
             <script>
-                $("#menu-toggle").click(function (e) {
-                    e.preventDefault();
-                    //se realiza el cambio de texto del boton
-                    var buttonValue = document.getElementById("toggleButton").value;
-                    if (buttonValue == undefined || buttonValue == "Ocultar") {
-                        document.getElementById("toggleButton").innerHTML = "Mostrar";
-                        document.getElementById("toggleButton").value = "Mostrar";
-                    } else if (buttonValue == "Mostrar") {
-                        document.getElementById("toggleButton").innerHTML = "Ocultar";
-                        document.getElementById("toggleButton").value = "Ocultar";
-                    }
-                    $("#wrapper").toggleClass("toggled");
-                });
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                //se realiza el cambio de texto del boton
+                var buttonValue = document.getElementById("toggleButton").value;
+                if (buttonValue == undefined || buttonValue == "Ocultar") {
+                    document.getElementById("toggleButton").innerHTML = "Mostrar";
+                    document.getElementById("toggleButton").value = "Mostrar";
+                } else if (buttonValue == "Mostrar") {
+                    document.getElementById("toggleButton").innerHTML = "Ocultar";
+                    document.getElementById("toggleButton").value = "Ocultar";
+                }
+                $("#wrapper").toggleClass("toggled");
+            });
             </script>	
         </div>
     </body>
     <footer th:fragment="footer" class="page-footer font-small bg-dark pt-1">
         <!-- Copyright -->
-        <div class="footer-copyright text-center text-white py-3">� 2019 Copyright:
+        <div class="footer-copyright text-center text-white py-3">© 2019 Copyright:
             <a href="#"> Demo Developers</a>
         </div>
         <!-- Copyright -->

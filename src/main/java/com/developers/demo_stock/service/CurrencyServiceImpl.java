@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.developers.demo_stock.entity.ProductFamily;
-import com.developers.demo_stock.repository.ProductFamilyRepository;
+import com.developers.demo_stock.entity.Currency;
+import com.developers.demo_stock.repository.CurrencyRepository;
 
 @Service
-public class ProductFamilyImpl implements ProductFamilyService {
+public class CurrencyServiceImpl implements CurrencyService {
     //inyeccion de dependecia
 
     /*@Transaccional: si interactua con la base de datos.
@@ -18,32 +18,32 @@ public class ProductFamilyImpl implements ProductFamilyService {
 	 transaccional dentro de la misma clase, 
 	 no se iniciara una transaccion.*/
     @Autowired
-    ProductFamilyRepository productFamilyRepo;
+    CurrencyRepository currencyRepo;
 
     /*transacción readonly puede ser utilizada cuando quieres que tu código lea pero no modifique ningún dato*/
     @Override
     @Transactional(readOnly = true)
-    public Iterable<ProductFamily> getAllProductFamily() {
-        return productFamilyRepo.findAll();
+    public Iterable<Currency> getAllCurrency() {
+        return currencyRepo.findAll();
     }
 
     @Override
     @Transactional
     public void delete(Integer id) {
-        productFamilyRepo.deleteById(id);
+        currencyRepo.deleteById(id);
     }
 
     @Override
     @Transactional
-    public void save(ProductFamily productFamily) {
-        productFamilyRepo.save(productFamily);
+    public void save(Currency currency) {
+        currencyRepo.save(currency);
 
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<ProductFamily> findById(Integer id) {
-        return productFamilyRepo.findById(id);
+    public Optional<Currency> findById(Integer id) {
+        return currencyRepo.findById(id);
     }
 
 }

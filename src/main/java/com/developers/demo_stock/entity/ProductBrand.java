@@ -31,7 +31,6 @@ public class ProductBrand {
     @Size(max = 50, message = "Tamaño no permitido")
     private String name;
 
-    
     @Column
     private boolean active;
 
@@ -138,7 +137,6 @@ public class ProductBrand {
         } else if (!name.equals(other.name)) {
             return false;
         }
-
 
         if (id != other.id) {
             return false;

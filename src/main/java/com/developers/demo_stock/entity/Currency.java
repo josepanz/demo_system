@@ -14,7 +14,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Country {
+public class Currency {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
@@ -31,11 +31,19 @@ public class Country {
     @Size(max = 50, message = "Tamaño no permitido")
     private String description;
 
+    @Column
+    @NotEmpty
+    @Size(max = 50, message = "Tamaño no permitido")
+    private String symbol;
+
+    @Column
+    private boolean active;
+
     @Temporal(TemporalType.DATE)
     @Column
     private Date creation_date;
 
-    public Country() {
+    public Currency() {
 
     }
 
@@ -76,10 +84,26 @@ public class Country {
         this.creation_date = creation_date;
     }
 
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
-        return "Country [id=" + id + ", code=" + code + ", description=" + description + ", creation_date="
-                + creation_date + "]";
+        return "Currency [id=" + id + ", code=" + code + ", description=" + description + ", creation_date="
+                + creation_date + ", symbol="+symbol+", active="+active+"]";
     }
 
     @Override
@@ -89,6 +113,7 @@ public class Country {
         result = prime * result + ((code == null) ? 0 : code.hashCode());
         result = prime * result + ((creation_date == null) ? 0 : creation_date.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
         result = prime * result + id;
         return result;
     }
@@ -104,7 +129,7 @@ public class Country {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Country other = (Country) obj;
+        Currency other = (Currency) obj;
         if (code == null) {
             if (other.code != null) {
                 return false;
@@ -124,6 +149,14 @@ public class Country {
                 return false;
             }
         } else if (!description.equals(other.description)) {
+            return false;
+        }
+
+        if (symbol == null) {
+            if (other.symbol != null) {
+                return false;
+            }
+        } else if (!symbol.equals(other.symbol)) {
             return false;
         }
         if (id != other.id) {
