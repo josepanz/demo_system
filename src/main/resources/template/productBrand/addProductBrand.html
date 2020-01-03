@@ -5,10 +5,10 @@
     <div class="container py-4">
         <div class="card bg-dark text-white">
             <div class="card-header">
-                <h2>Agregar Pais <a href="country" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a></h2>
+                <h2>Agregar Marca de Producto <a href="productBrand" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a></h2>
             </div>
             <div class="card-body">
-                <form th:action="@{/addCountry}" th:object="${country}" method="post">
+                <form th:action="@{/addProductBrand}" th:object="${productBrand}" method="post">
                     <div class="form-group row">
                         <label for="code" class="col-sm-2 col-form-label">Código</label>
                         <div class="col-sm-6">

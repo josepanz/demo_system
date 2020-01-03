@@ -5,27 +5,29 @@
         <div class="container">
             <div class="row">
                 <p>
-                    <a href="addCountry" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>Agregar</a>
+                    <a href="addProductBrand" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>Agregar</a>
                 </p>
                 <table class="table table-bordered table-striped table-hover">
                     <thead>
                     <th>Id</th>
                     <th>Código</th>
-                    <th>Descripción</th>
+                    <th>Nombre</th>
+                    <th>Activo</th>
                     <th>Fecha Agregada</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                     </thead>
                     <tbody>                   
-                            <tr th:each="country: ${countryList}">
-                                <td th:text="${country.id}"></td>
-                                <td th:text="${country.code}"/></td>
-                                <td th:text="${country.description}"/></td>
-                                <td th:text="${country.creation_date}"/></td>                                                                                          
+                            <tr th:each="productBrand: ${productBrandList}">
+                                <td th:text="${productBrand.id}"></td>
+                                <td th:text="${productBrand.code}"/></td>
+                                <td th:text="${productBrand.name}"/></td>
+                                <td th:text="${productBrand.active}"/></td>
+                                <td th:text="${productBrand.creation_date}"/></td>                                                                                          
                                     <td><a class="btn btn-primary btn-xs"
-								     th:href="@{/editCountry/} + ${country.id}" th:text="'editar'"></a></td>
+								     th:href="@{/editProductBrand/} + ${productBrand.id}" th:text="'editar'"></a></td>
                                     <td><a class="btn btn-danger btn-xs"
-								     th:href="@{/deleteCountry/} + ${country.id}" th:text="'eliminar'"
+								     th:href="@{/deleteProductBrand/} + ${productBrand.id}" th:text="'eliminar'"
 								     onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
                             </tr >
                     </tbody>
