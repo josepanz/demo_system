@@ -59,7 +59,8 @@ public class CountryController {
 			status.setComplete();		
 			flash.addFlashAttribute("success", "Pais agregado con éxito!");		
 		} catch (Exception e) {
-			flash.addFlashAttribute("error", e.getMessage());
+			model.addAttribute("error", e.getMessage());
+			return "country/addCountry";
 		}
 		return "redirect:/addCountry";
 	}
@@ -68,17 +69,14 @@ public class CountryController {
 	@GetMapping("/editCountry/{id}")
 	public String getEditCountry(@PathVariable(value = "id") Integer id, Map<String, Object> model) {		
 		Optional<Country> country= countryService.findById(id);
-		System.out.println(country.toString());
 		model.put("title", "Editar Pais");
 		model.put("country", country);
-		System.err.println("id recuperado en getmappint edit"+ country.get().getId());
 		return "country/editCountry";
 	}
 	
 	@PostMapping("/editCountry")
 	public String putEditCountry(@Valid Country country, BindingResult result, Model model,
-			 RedirectAttributes flash, SessionStatus status) {
-      
+			 RedirectAttributes flash, SessionStatus status) {     
 		if (result.hasErrors()) {
 			model.addAttribute("title", "Editar País");
 			return "country/editCountry";
