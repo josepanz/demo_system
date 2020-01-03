@@ -20,9 +20,9 @@
 					<div class="form-group row">
                         <label for="description" class="col-sm-2 col-form-label">Descripción</label>
                         <div class="col-sm-6">
-                            <input type="text" th:field="*{description}" class="form-control"
+                            <input type="text" th:field="*{name}" class="form-control"
                                 th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
-                                th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+                                th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
 						</div>
 					</div>
 					<div class="form-group row" >

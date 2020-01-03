@@ -31,9 +31,8 @@ public class ProductBrand {
     @Size(max = 50, message = "Tamaño no permitido")
     private String name;
 
+    
     @Column
-    @NotEmpty
-    @Size(max = 50, message = "Tamaño no permitido")
     private boolean active;
 
     @Temporal(TemporalType.DATE)
@@ -65,11 +64,11 @@ public class ProductBrand {
         this.code = code;
     }
 
-    public String getDescription() {
+    public String getName() {
         return name;
     }
 
-    public void setDescription(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
