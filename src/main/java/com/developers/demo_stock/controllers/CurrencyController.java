@@ -48,7 +48,7 @@ public class CurrencyController {
 
     @PostMapping("/addCurrency")
     public String postCurrency(@Valid @ModelAttribute("currency") Currency currency, BindingResult result, Model model,
-            SessionStatus status) {
+            SessionStatus status, RedirectAttributes flash) {
         model.addAttribute("title", "Agregar Moneda");
         if (result.hasErrors()) {
             return "currency/addCurrency";
@@ -57,13 +57,12 @@ public class CurrencyController {
 
             currencyService.save(currency);
             status.setComplete();
-            model.addAttribute("success", "Moneda agregada con éxito!");
-            model.addAttribute("currency", new Currency());
-
+            flash.addFlashAttribute("success", "Moneda agregada con éxito!");
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
+            return "currency/addCurrency";
         }
-        return "currency/addCurrency";
+        return "redirect:addCurrency";
     }
 
     @GetMapping("/editCurrency/{id}")

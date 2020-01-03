@@ -31,6 +31,9 @@ public class Country {
     @Size(max = 50, message = "Tamaño no permitido")
     private String description;
 
+    @Column
+    private boolean active;
+
     @Temporal(TemporalType.DATE)
     @Column
     private Date creation_date;
@@ -76,10 +79,18 @@ public class Country {
         this.creation_date = creation_date;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "Country [id=" + id + ", code=" + code + ", description=" + description + ", creation_date="
-                + creation_date + "]";
+                + creation_date + " , active = "+active+"]";
     }
 
     @Override

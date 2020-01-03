@@ -48,7 +48,7 @@ public class CivilStatusController {
 
     @PostMapping("/addCivilStatus")
     public String postCivilStatus(@Valid @ModelAttribute("civilStatus") CivilStatus civilStatus, BindingResult result, Model model,
-            SessionStatus status) {
+            SessionStatus status, RedirectAttributes flash) {
         model.addAttribute("title", "Agregar Estado Civil");
         if (result.hasErrors()) {
             return "civilStatus/addCivilStatus";
@@ -57,13 +57,13 @@ public class CivilStatusController {
 
             civilStatusService.save(civilStatus);
             status.setComplete();
-            model.addAttribute("success", "Estado Civil agregado con éxito!");
-            model.addAttribute("civilStatus", new CivilStatus());
+            flash.addFlashAttribute("success", "Estado Civil agregado con éxito!");;
 
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
+            return "civilStatus/addCivilStatus";
         }
-        return "civilStatus/addCivilStatus";
+        return "redirect:/addCivilStatus";
     }
 
     @GetMapping("/editCivilStatus/{id}")

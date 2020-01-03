@@ -12,6 +12,7 @@
                     <th>Id</th>
                     <th>Código</th>
                     <th>Descripción</th>
+                    <th>Estado</th>
                     <th>Fecha Agregada</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
@@ -21,6 +22,7 @@
                             <td th:text="${country.id}"></td>
                             <td th:text="${country.code}"/></td>
                             <td th:text="${country.description}"/></td>
+                            <td th:text="${country.active}"/></td>
                             <td th:text="${country.creation_date}"/></td>                                                                                          
                             <td><a class="btn btn-primary btn-xs"
                                    th:href="@{/editCountry/} + ${country.id}" th:text="'editar'"></a></td>

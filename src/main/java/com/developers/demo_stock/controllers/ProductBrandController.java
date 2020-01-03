@@ -48,7 +48,7 @@ public class ProductBrandController {
 
     @PostMapping("/addProductBrand")
     public String postProductBrand(@Valid @ModelAttribute("productBrand") ProductBrand productBrand, BindingResult result, Model model,
-            SessionStatus status) {
+            SessionStatus status, RedirectAttributes flash) {
         model.addAttribute("title", "Agregar Marca de Producto");
         if (result.hasErrors()) {
             return "productBrand/addProductBrand";
@@ -57,13 +57,13 @@ public class ProductBrandController {
 
             productBrandService.save(productBrand);
             status.setComplete();
-            model.addAttribute("success", "Marca de Producto agregado con éxito!");
-            model.addAttribute("productBrand", new ProductBrand());
-
+            flash.addFlashAttribute("success", "Marca de Producto agregada con éxito!");		
+ 
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
+            return "productBrand/addProductBrand";
         }
-        return "productBrand/addProductBrand";
+        return "redirect: addProductBrand";
     }
 
     @GetMapping("/editProductBrand/{id}")
