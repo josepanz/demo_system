@@ -48,7 +48,7 @@ public class ProductSizeController {
 
     @PostMapping("/addProductSize")
     public String postProductSize(@Valid @ModelAttribute("productSize") ProductSize productSize, BindingResult result, Model model,
-            SessionStatus status) {
+            SessionStatus status, RedirectAttributes flash) {
         model.addAttribute("title", "Agregar Tamano de Producto");
         if (result.hasErrors()) {
             return "productSize/addProductSize";
@@ -57,13 +57,13 @@ public class ProductSizeController {
 
             productSizeService.save(productSize);
             status.setComplete();
-            model.addAttribute("success", "Tamano de Producto agregado con éxito!");
-            model.addAttribute("productSize", new ProductSize());
+            flash.addFlashAttribute("success", "Pais agregado con éxito!");
 
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
+            return "productSize/addProductSize";
         }
-        return "productSize/addProductSize";
+        return "redirect: addProductSize";
     }
 
     @GetMapping("/editProductSize/{id}")

@@ -48,7 +48,7 @@ public class ProductColorController {
 
     @PostMapping("/addProductColor")
     public String postProductColor(@Valid @ModelAttribute("productColor") ProductColor productColor, BindingResult result, Model model,
-            SessionStatus status) {
+            SessionStatus status, RedirectAttributes flash) {
         model.addAttribute("title", "Agregar Color de Producto");
         if (result.hasErrors()) {
             return "productColor/addProductColor";
@@ -57,13 +57,13 @@ public class ProductColorController {
 
             productColorService.save(productColor);
             status.setComplete();
-            model.addAttribute("success", "Color de Producto agregado con éxito!");
-            model.addAttribute("productColor", new ProductColor());
+            flash.addFlashAttribute("success", "Color de Producto agregado con éxito!");		
 
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
+            return "productColor/addProductColor";
         }
-        return "productColor/addProductColor";
+        return "redirect: addProductColor";
     }
 
     @GetMapping("/editProductColor/{id}")

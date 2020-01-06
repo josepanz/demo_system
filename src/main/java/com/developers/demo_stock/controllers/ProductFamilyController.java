@@ -48,7 +48,7 @@ public class ProductFamilyController {
 
     @PostMapping("/addProductFamily")
     public String postProductFamily(@Valid @ModelAttribute("productFamily") ProductFamily productFamily, BindingResult result, Model model,
-            SessionStatus status) {
+            SessionStatus status, RedirectAttributes flash) {
         model.addAttribute("title", "Agregar Familia de Producto");
         if (result.hasErrors()) {
             return "productFamily/addProductFamily";
@@ -57,13 +57,13 @@ public class ProductFamilyController {
 
             productFamilyService.save(productFamily);
             status.setComplete();
-            model.addAttribute("success", "Familia de Producto agregado con éxito!");
-            model.addAttribute("productFamily", new ProductFamily());
+            flash.addFlashAttribute("success", "Familia de Producto agregado con éxito!");	
 
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
+            return "productFamily/addProductFamily";
         }
-        return "productFamily/addProductFamily";
+        return "redirect: addProductFamily";
     }
 
     @GetMapping("/editProductFamily/{id}")
