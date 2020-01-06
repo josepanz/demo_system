@@ -1,15 +1,14 @@
 package com.developers.demo_stock.entity;
 
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.List;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,6 +34,7 @@ public class Country {
     private String description;
 
     @Column
+    @NotEmpty
     private boolean active;
 
 
@@ -42,7 +42,7 @@ public class Country {
     @Column
     private Date creation_date;
     
-    
+    /*
     @OneToMany(mappedBy = "country")
     private List<Departament> departament = new ArrayList<>();
     
@@ -53,7 +53,7 @@ public class Country {
 
 	public void setDepartament(List<Departament> departament) {
 		this.departament = departament;
-	}
+	}*/
 
 	public Country() {
             

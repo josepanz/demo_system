@@ -1,6 +1,8 @@
 package com.developers.demo_stock.entity;
 
+
 import java.util.Date;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,7 +49,7 @@ public class Departament {
 	 @JoinColumn(name="country_id")
 	 @NotNull
 	 private Country country;
-	 
+
 	 
 	 public Country getCountry() {
 		return country;
@@ -63,7 +65,7 @@ public class Departament {
 	    }
 	 
 	public Departament() {
-		
+
 	}
 
 	public int getId() {

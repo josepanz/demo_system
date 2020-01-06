@@ -1,7 +1,9 @@
 package com.developers.demo_stock.service;
 
+
 import java.util.Optional;
 
+import com.developers.demo_stock.entity.Country;
 import com.developers.demo_stock.entity.Departament;
 
 
@@ -14,4 +16,6 @@ public interface DepartamentService {
 	    public void delete(Integer id);
 
 	    public Optional<Departament> findById(Integer id);
+	    
+	    public Iterable<Country> findAllCountry();
 }
