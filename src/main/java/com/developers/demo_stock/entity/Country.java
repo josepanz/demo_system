@@ -33,14 +33,11 @@ public class Country {
     @NotEmpty
     @Size(max = 50, message = "Tamaño no permitido")
     private String description;
-<<<<<<< HEAD
-   
-=======
 
     @Column
     private boolean active;
 
->>>>>>> branch 'master' of https://github.com/josepanz/demo_system.git
+
     @Temporal(TemporalType.DATE)
     @Column
     private Date creation_date;
