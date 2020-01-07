@@ -71,5 +71,37 @@ public class DepartamentController {
 		model.put("departament", departament);
 		return "departament/editDepartament";
 	}
+	
+	
+	@PostMapping("/editDepartament")
+	public String putEditCountry(@Valid Departament departament, BindingResult result, Model model,
+			 RedirectAttributes flash, SessionStatus status) {     
+		model.addAttribute("title", "Editar Departamento");
+		model.addAttribute("countryIterable", departamentService.findAllCountry());
+		if (result.hasErrors()) {					
+			return "departament/editDepartament";
+		}		
+		try {
+			departamentService.save(departament);            
+			status.setComplete();		
+			flash.addFlashAttribute("success", "Departamento editado con éxito!");			
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+			return "departament/editDepartament";
+		}
+		return "redirect:/departament";
+	}
+	
+	@GetMapping("/deleteDepartament/{id}")
+	public String deleteCountry(@PathVariable(value = "id") Integer id, RedirectAttributes flash) {
+		try {
+			departamentService.delete(id);
+			flash.addFlashAttribute("success", "Departamento eliminado con éxito!");
+		} catch (Exception e) {
+			flash.addFlashAttribute("error", e.getMessage());
+		}
+		return "redirect:/departament";
+	}
+
 
 }
