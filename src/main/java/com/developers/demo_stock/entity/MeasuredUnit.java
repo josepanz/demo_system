@@ -14,7 +14,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-public class CivilStatus {
+public class MeasuredUnit {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
@@ -24,18 +24,18 @@ public class CivilStatus {
     @Column
     @NotEmpty
     @Size(max = 50, message = "Tamaño no permitido")
-    private String description;
+    private String code;
 
     @Column
     @NotEmpty
     @Size(max = 50, message = "Tamaño no permitido")
-    private String code;
+    private String description;
 
     @Temporal(TemporalType.DATE)
     @Column
     private Date creation_date;
 
-    public CivilStatus() {
+    public MeasuredUnit() {
 
     }
 
@@ -50,6 +50,14 @@ public class CivilStatus {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getDescription() {
@@ -70,16 +78,8 @@ public class CivilStatus {
 
     @Override
     public String toString() {
-        return "CivilStatus [id=" + id + ", code=" + code + ", description=" + description + ", creation_date="
+        return "MeasuredUnit [id=" + id + ", code=" + code + ", description=" + description + ", creation_date="
                 + creation_date + "]";
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     @Override
@@ -104,8 +104,7 @@ public class CivilStatus {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        CivilStatus other = (CivilStatus) obj;
-
+        MeasuredUnit other = (MeasuredUnit) obj;
         if (code == null) {
             if (other.code != null) {
                 return false;
@@ -127,6 +126,7 @@ public class CivilStatus {
         } else if (!description.equals(other.description)) {
             return false;
         }
+
         if (id != other.id) {
             return false;
         }

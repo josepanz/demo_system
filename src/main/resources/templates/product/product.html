@@ -5,27 +5,29 @@
         <div class="container">
             <div class="row">
                 <p>
-                    <a href="addCivilStatus" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>Agregar</a>
+                    <a href="addProduct" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>Agregar</a>
                 </p>
                 <table class="table table-bordered table-striped table-hover">
                     <thead>
                     <th>Id</th>
-                    <th>Descripción</th>
                     <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Unidad Medida</th>
                     <th>Fecha Agregada</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                     </thead>
                     <tbody>                   
-                        <tr th:each="civilStatus: ${civilStatusList}">
-                            <td th:text="${civilStatus.id}"></td>
-                            <td th:text="${country.code}"/></td>
-                            <td th:text="${civilStatus.description}"/></td>
-                            <td th:text="${civilStatus.creation_date}"/></td>                                                                                          
+                        <tr th:each="product: ${productList}">
+                            <td th:text="${product.id}"></td>
+                            <td th:text="${product.code}"/></td>
+                            <td th:text="${product.description}"/></td>
+                            <td th:text="${product.measuredUnit.getDescription()}"/></td>
+                            <td th:text="${product.creation_date}"/></td>                                                                                          
                             <td><a class="btn btn-primary btn-xs"
-                                   th:href="@{/editCivilStatus/} + ${civilStatus.id}" th:text="'editar'"></a></td>
+                                   th:href="@{/editProduct/} + ${product.id}" th:text="'editar'"></a></td>
                             <td><a class="btn btn-danger btn-xs"
-                                   th:href="@{/deleteCivilStatus/} + ${civilStatus.id}" th:text="'eliminar'"
+                                   th:href="@{/deleteProduct/} + ${product.id}" th:text="'eliminar'"
                                    onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
                         </tr >
                     </tbody>

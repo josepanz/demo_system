@@ -1,25 +1,42 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.developers.demo_stock.entity;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Entity
-public class CivilStatus {
+/**
+ *
+ * @author Panza
+ */
+@Entity(name = "product")
+public class Product {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
+
+    @Column
+    @NotEmpty
+    @Size(max = 50, message = "Tamaño no permitido")
+    private String code;
 
     @Column
     @NotEmpty
@@ -29,19 +46,29 @@ public class CivilStatus {
     @Column
     @NotEmpty
     @Size(max = 50, message = "Tamaño no permitido")
-    private String code;
+    private String alternative_code;
 
     @Temporal(TemporalType.DATE)
     @Column
     private Date creation_date;
 
-    public CivilStatus() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "measured_unit_id")
+    @NotNull
+    private MeasuredUnit measured_unit;
 
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_vat_id")
+    @NotNull
+    private ProductVat product_vat;
 
     @PrePersist
     public void prePersist() {
         creation_date = new Date();
+    }
+
+    public Product() {
+
     }
 
     public int getId() {
@@ -50,6 +77,38 @@ public class CivilStatus {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getAlternative_code() {
+        return alternative_code;
+    }
+
+    public void setAlternative_code(String alternative_code) {
+        this.alternative_code = alternative_code;
+    }
+
+    public MeasuredUnit getMeasured_unit() {
+        return measured_unit;
+    }
+
+    public void setMeasured_unit(MeasuredUnit measured_unit) {
+        this.measured_unit = measured_unit;
+    }
+
+    public ProductVat getProduct_vat() {
+        return product_vat;
+    }
+
+    public void setProduct_vat(ProductVat product_vat) {
+        this.product_vat = product_vat;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getDescription() {
@@ -69,26 +128,15 @@ public class CivilStatus {
     }
 
     @Override
-    public String toString() {
-        return "CivilStatus [id=" + id + ", code=" + code + ", description=" + description + ", creation_date="
-                + creation_date + "]";
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((code == null) ? 0 : code.hashCode());
+        result = prime * result + ((measured_unit == null) ? 0 : measured_unit.hashCode());
+        result = prime * result + ((product_vat == null) ? 0 : product_vat.hashCode());
         result = prime * result + ((creation_date == null) ? 0 : creation_date.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((alternative_code == null) ? 0 : alternative_code.hashCode());
         result = prime * result + id;
         return result;
     }
@@ -104,13 +152,26 @@ public class CivilStatus {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        CivilStatus other = (CivilStatus) obj;
-
+        Product other = (Product) obj;
         if (code == null) {
             if (other.code != null) {
                 return false;
             }
         } else if (!code.equals(other.code)) {
+            return false;
+        }
+        if (measured_unit == null) {
+            if (other.measured_unit != null) {
+                return false;
+            }
+        } else if (!measured_unit.equals(other.measured_unit)) {
+            return false;
+        }
+        if (product_vat == null) {
+            if (other.product_vat != null) {
+                return false;
+            }
+        } else if (!product_vat.equals(other.product_vat)) {
             return false;
         }
         if (creation_date == null) {

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-public class CivilStatus {
+public class ProductVat {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
@@ -24,18 +24,24 @@ public class CivilStatus {
     @Column
     @NotEmpty
     @Size(max = 50, message = "Tamaño no permitido")
-    private String description;
+    private String code;
 
     @Column
     @NotEmpty
-    @Size(max = 50, message = "Tamaño no permitido")
-    private String code;
+    private double vat_rate;
+
+    @Column
+    @NotEmpty
+    private double conversion_factor;
+
+    @Column
+    private boolean enabled;
 
     @Temporal(TemporalType.DATE)
     @Column
     private Date creation_date;
 
-    public CivilStatus() {
+    public ProductVat() {
 
     }
 
@@ -52,12 +58,12 @@ public class CivilStatus {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCode() {
+        return code;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Date getCreation_date() {
@@ -68,18 +74,34 @@ public class CivilStatus {
         this.creation_date = creation_date;
     }
 
+    public double getVat_rate() {
+        return vat_rate;
+    }
+
+    public void setVat_rate(double vat_rate) {
+        this.vat_rate = vat_rate;
+    }
+
+    public double getConversion_factor() {
+        return conversion_factor;
+    }
+
+    public void setConversion_factor(double conversion_factor) {
+        this.conversion_factor = conversion_factor;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public String toString() {
-        return "CivilStatus [id=" + id + ", code=" + code + ", description=" + description + ", creation_date="
-                + creation_date + "]";
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+        return "MeasuredUnit [id=" + id + ", code=" + code + ", creation_date="
+                + creation_date + ", enabled=" + enabled + "]";
     }
 
     @Override
@@ -88,7 +110,6 @@ public class CivilStatus {
         int result = 1;
         result = prime * result + ((code == null) ? 0 : code.hashCode());
         result = prime * result + ((creation_date == null) ? 0 : creation_date.hashCode());
-        result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + id;
         return result;
     }
@@ -104,8 +125,7 @@ public class CivilStatus {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        CivilStatus other = (CivilStatus) obj;
-
+        ProductVat other = (ProductVat) obj;
         if (code == null) {
             if (other.code != null) {
                 return false;
@@ -120,13 +140,7 @@ public class CivilStatus {
         } else if (!creation_date.equals(other.creation_date)) {
             return false;
         }
-        if (description == null) {
-            if (other.description != null) {
-                return false;
-            }
-        } else if (!description.equals(other.description)) {
-            return false;
-        }
+
         if (id != other.id) {
             return false;
         }

@@ -1,0 +1,69 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
+
+    <section layout:fragment="content">
+        <div class="container py-4">
+            <div class="card bg-dark text-white">
+                <div class="card-header">
+                    <h2>Agregar Producto <a th:href="@{/product}" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a></h2>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/addProduct}" th:object="${product}" method="post">
+                        <div class="form-group row">
+                            <label for="code" class="col-sm-2 col-form-label">Código</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{code}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-sm-2 col-form-label">Nombre</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{description}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="measuredUnit" class="col-sm-2 col-form-label">Unidad de Medida</label>
+                            <div class="col-sm-6">
+                                 <select th:field="*{measuredUnit}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" >                           
+                         <option value="" > Seleccione una unidad de Medida </option>
+                         <option th:each="measuredUnit : ${measuredUnitIterable}"
+                            th:value="${measuredUnit.getId()}"
+                            th:utext="${measuredUnit.getDescription()}"/>
+                  			</select>
+                  			   <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('measuredUnit')}" th:errors="*{measuredUnit}"></small>
+                            </div>
+                        </div> 
+                         <!--div class="form-group row">
+                            <label for="productVat" class="col-sm-2 col-form-label">IVA</label>
+                            <div class="col-sm-6">
+                                 <select th:field="*{productVat}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" >                           
+                         <option value="" > Seleccione un porcentaje de IVA </option>
+                         <option th:each="productVat : ${productVatIterable}"
+                            th:value="${productVat.getId()}"
+                            th:utext="${productVat.getDescription()}"/>
+                  			</select>
+                  			   <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('productVat')}" th:errors="*{productVat}"></small>
+                            </div>
+                        </div--> 
+                        
+                        
+                        <div class="form-group row" >
+                            <div class="col-sm-6">
+                                <input type="submit" th:value="${title}"
+                                       class="btn btn-secondary" />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
