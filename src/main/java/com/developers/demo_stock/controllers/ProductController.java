@@ -37,75 +37,9 @@ public class ProductController {
     }
 
     @GetMapping("/addProduct")
-    public String getMeasuredUnit(Map<String, Object> model) {
+    public String getProduct(Map<String, Object> model) {
         Product product = new Product();
         model.put("measuredUnitIterable", productService.findAllMeasuredUnit());
-        model.put("product", product);
-        model.put("title", "Agregar Producto");
-        return "product/addProduct";
-    }
-
-    @PostMapping("/addProduct")
-    public String postMeasuredUnit(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model,
-            SessionStatus status, RedirectAttributes flash) {
-        model.addAttribute("title", "Agregar Producto");
-        model.addAttribute("measuredUnitIterable", productService.findAllMeasuredUnit());
-        if (result.hasErrors()) {
-            return "product/addProduct";
-        }
-        try {
-            productService.save(product);
-            status.setComplete();
-            flash.addFlashAttribute("success", "Producto agregado con éxito!");
-        } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
-            return "product/addProduct";
-        }
-        return "redirect:/addProduct";
-    }
-
-    @GetMapping("/editProduct/{id}")
-    public String getEditMeasuredUnit(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
-        Optional<Product> product = productService.findById(id);
-        model.put("measuredUnitIterable", productService.findAllMeasuredUnit());
-        model.put("title", "Editar Producto");
-        model.put("product", product);
-        return "product/editProduct";
-    }
-
-    @PostMapping("/editProduct")
-    public String putEditMeasuredUnit(@Valid Product product, BindingResult result, Model model,
-            RedirectAttributes flash, SessionStatus status) {
-        model.addAttribute("title", "Editar Producto");
-        model.addAttribute("measuredUnitIterable", productService.findAllMeasuredUnit());
-        if (result.hasErrors()) {
-            return "product/editProduct";
-        }
-        try {
-            productService.save(product);
-            status.setComplete();
-            flash.addFlashAttribute("success", "Producto editado con éxito!");
-        } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
-            return "product/editProduct";
-        }
-        return "redirect:/product";
-    }
-
-    @GetMapping("/deleteProduct/{id}")
-    public String deleteMeasuredUnit(@PathVariable(value = "id") Integer id, RedirectAttributes flash) {
-        try {
-            productService.delete(id);
-            flash.addFlashAttribute("success", "Producto eliminado con éxito!");
-        } catch (Exception e) {
-            flash.addFlashAttribute("error", e.getMessage());
-        }
-        return "redirect:/product";
-    }
-
- /*   @GetMapping("/addProduct")
-    public String getProductVat(Map<String, Object> model) {
-        Product product = new Product();
         model.put("productVatIterable", productService.findAllProductVat());
         model.put("product", product);
         model.put("title", "Agregar Producto");
@@ -113,9 +47,10 @@ public class ProductController {
     }
 
     @PostMapping("/addProduct")
-    public String postProductVat(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model,
+    public String postProduct(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model,
             SessionStatus status, RedirectAttributes flash) {
         model.addAttribute("title", "Agregar Producto");
+        model.addAttribute("measuredUnitIterable", productService.findAllMeasuredUnit());
         model.addAttribute("productVatIterable", productService.findAllProductVat());
         if (result.hasErrors()) {
             return "product/addProduct";
@@ -132,8 +67,9 @@ public class ProductController {
     }
 
     @GetMapping("/editProduct/{id}")
-    public String getEditProductVat(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
+    public String getEditProduct(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
         Optional<Product> product = productService.findById(id);
+        model.put("measuredUnitIterable", productService.findAllMeasuredUnit());
         model.put("productVatIterable", productService.findAllProductVat());
         model.put("title", "Editar Producto");
         model.put("product", product);
@@ -141,9 +77,10 @@ public class ProductController {
     }
 
     @PostMapping("/editProduct")
-    public String putEditProductVat(@Valid Product product, BindingResult result, Model model,
+    public String putEditProduct(@Valid Product product, BindingResult result, Model model,
             RedirectAttributes flash, SessionStatus status) {
         model.addAttribute("title", "Editar Producto");
+        model.addAttribute("measuredUnitIterable", productService.findAllMeasuredUnit());
         model.addAttribute("productVatIterable", productService.findAllProductVat());
         if (result.hasErrors()) {
             return "product/editProduct";
@@ -160,7 +97,7 @@ public class ProductController {
     }
 
     @GetMapping("/deleteProduct/{id}")
-    public String deleteProductVat(@PathVariable(value = "id") Integer id, RedirectAttributes flash) {
+    public String deleteProduct(@PathVariable(value = "id") Integer id, RedirectAttributes flash) {
         try {
             productService.delete(id);
             flash.addFlashAttribute("success", "Producto eliminado con éxito!");
@@ -169,5 +106,6 @@ public class ProductController {
         }
         return "redirect:/product";
     }
-*/
+
+ 
 }

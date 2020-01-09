@@ -21,7 +21,7 @@
                             <td th:text="${city.id}"></td>
                             <td th:text="${city.code}"/></td>
                             <td th:text="${city.description}"/></td>
-                            <td th:text="${city.departament}"/></td>
+                            <td th:text="${city.departament.getDescription()}"/></td>
                             <td th:text="${city.creation_date}"/></td>                                                                                          
                             <td><a class="btn btn-primary btn-xs"
                                    th:href="@{/editCity/} + ${city.id}" th:text="'editar'"></a></td>

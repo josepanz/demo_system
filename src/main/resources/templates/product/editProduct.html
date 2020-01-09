@@ -39,12 +39,12 @@
                                        th:if="${#fields.hasErrors('measuredUnit')}" th:errors="*{measuredUnit}"></small>
                             </div>
                         </div>                                   
-                        <!--div class="form-group row">
-                            <label for="measuredUnit" class="col-sm-2 col-form-label">Pa�s</label>
+                        <div class="form-group row">
+                            <label for="measuredUnit" class="col-sm-2 col-form-label">IVA</label>
                             <div class="col-sm-6">
                                 <select th:field="*{productVat}" class="form-control"
                                         th:errorclass="'form-control alert-danger'" >                           
-                                    <option value="" > Seleccione un Pa�s </option>
+                                    <option value="" > Seleccione un porcentaje de IVA </option>
                                     <option th:each="productVat : ${productVatIterable}"
                                             th:value="${productVat.getId()}"
                                             th:utext="${productVat.getDescription()}"/>
@@ -52,7 +52,7 @@
                                 <small class="form-text text-danger"
                                        th:if="${#fields.hasErrors('productVat')}" th:errors="*{productVat}"></small>
                             </div>
-                        </div-->                                   
+                        </div>                                   
                         <div class="form-group row" >
                             <div class="col-sm-6">
                                 <input type="submit" th:value="${title}"

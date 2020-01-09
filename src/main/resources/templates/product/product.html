@@ -13,6 +13,7 @@
                     <th>Código</th>
                     <th>Descripción</th>
                     <th>Unidad Medida</th>
+                    <th>IVA</th>
                     <th>Fecha Agregada</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
@@ -23,6 +24,7 @@
                             <td th:text="${product.code}"/></td>
                             <td th:text="${product.description}"/></td>
                             <td th:text="${product.measuredUnit.getDescription()}"/></td>
+                            <td th:text="${product.productVat.getDescription()}"/></td>
                             <td th:text="${product.creation_date}"/></td>                                                                                          
                             <td><a class="btn btn-primary btn-xs"
                                    th:href="@{/editProduct/} + ${product.id}" th:text="'editar'"></a></td>

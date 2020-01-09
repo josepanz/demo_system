@@ -25,36 +25,36 @@
                                        th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
                             </div>
                         </div>
-                         <div class="form-group row">
+                        <div class="form-group row">
                             <label for="measuredUnit" class="col-sm-2 col-form-label">Unidad de Medida</label>
                             <div class="col-sm-6">
-                                 <select th:field="*{measuredUnit}" class="form-control"
-                                       th:errorclass="'form-control alert-danger'" >                           
-                         <option value="" > Seleccione una unidad de Medida </option>
-                         <option th:each="measuredUnit : ${measuredUnitIterable}"
-                            th:value="${measuredUnit.getId()}"
-                            th:utext="${measuredUnit.getDescription()}"/>
-                  			</select>
-                  			   <small class="form-text text-danger"
+                                <select th:field="*{measuredUnit}" class="form-control"
+                                        th:errorclass="'form-control alert-danger'" >                           
+                                    <option value="" > Seleccione una unidad de Medida </option>
+                                    <option th:each="measuredUnit : ${measuredUnitIterable}"
+                                            th:value="${measuredUnit.getId()}"
+                                            th:utext="${measuredUnit.getDescription()}"/>
+                                </select>
+                                <small class="form-text text-danger"
                                        th:if="${#fields.hasErrors('measuredUnit')}" th:errors="*{measuredUnit}"></small>
                             </div>
                         </div> 
-                         <!--div class="form-group row">
+                        <div class="form-group row">
                             <label for="productVat" class="col-sm-2 col-form-label">IVA</label>
                             <div class="col-sm-6">
-                                 <select th:field="*{productVat}" class="form-control"
-                                       th:errorclass="'form-control alert-danger'" >                           
-                         <option value="" > Seleccione un porcentaje de IVA </option>
-                         <option th:each="productVat : ${productVatIterable}"
-                            th:value="${productVat.getId()}"
-                            th:utext="${productVat.getDescription()}"/>
-                  			</select>
-                  			   <small class="form-text text-danger"
+                                <select th:field="*{productVat}" class="form-control"
+                                        th:errorclass="'form-control alert-danger'" >                           
+                                    <option value="" > Seleccione un porcentaje de IVA </option>
+                                    <option th:each="productVat : ${productVatIterable}"
+                                            th:value="${productVat.getId()}"
+                                            th:utext="${productVat.getDescription()}"/>
+                                </select>
+                                <small class="form-text text-danger"
                                        th:if="${#fields.hasErrors('productVat')}" th:errors="*{productVat}"></small>
                             </div>
-                        </div--> 
-                        
-                        
+                        </div> 
+
+
                         <div class="form-group row" >
                             <div class="col-sm-6">
                                 <input type="submit" th:value="${title}"
