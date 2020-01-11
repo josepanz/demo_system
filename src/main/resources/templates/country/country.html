@@ -22,7 +22,11 @@
                             <td th:text="${country.id}"></td>
                             <td th:text="${country.code}"/></td>
                             <td th:text="${country.description}"/></td>
-                            <td th:text="${country.active}"/></td>
+                            <td align="center"/>
+                             <span th:if="${country.active}" class="glyphicon glyphicon-ok"></span>
+                             <span th:unless="${country.active}" class="glyphicon glyphicon-remove"></span>
+                            </td>
+                            <!--td th:text="${country.active}"/></td-->
                             <td th:text="${country.creation_date}"/></td>                                                                                          
                             <td><a class="btn btn-primary btn-xs"
                                    th:href="@{/editCountry/} + ${country.id}" th:text="'editar'"></a></td>
