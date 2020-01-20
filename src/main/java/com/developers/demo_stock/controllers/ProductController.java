@@ -57,14 +57,11 @@ public class ProductController {
             return "product/addProduct";
         }
         try {
-            System.out.println("ingreso al metodo");
             productService.save(product);
-            System.out.println("hizo save");
             status.setComplete();
-            System.out.println("hizo set complete");
             flash.addFlashAttribute("success", "Producto agregado con éxito!");
         } catch (Exception e) {
-            System.out.println("catch in addProduct");
+            System.out.println("catch in postProduct");
             model.addAttribute("error", e.getMessage());
             return "product/addProduct";
         }
