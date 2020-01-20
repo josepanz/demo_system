@@ -44,7 +44,6 @@ public class Product {
     private String description;
 
     @Column
-    @NotEmpty
     @Size(max = 50, message = "Tamaño no permitido")
     private String alternative_code;
 
@@ -186,6 +185,13 @@ public class Product {
                 return false;
             }
         } else if (!description.equals(other.description)) {
+            return false;
+        }
+        if (alternative_code == null) {
+            if (other.alternative_code != null) {
+                return false;
+            }
+        } else if (!alternative_code.equals(other.alternative_code)) {
             return false;
         }
         if (id != other.id) {

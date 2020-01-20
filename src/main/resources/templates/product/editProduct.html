@@ -26,31 +26,39 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="measuredUnit" class="col-sm-2 col-form-label">Unidad de Medida</label>
+                            <label for="alternative_code" class="col-sm-2 col-form-label">Código Alternativo</label>
                             <div class="col-sm-6">
-                                <select th:field="*{measuredUnit}" class="form-control"
+                                <input type="text" th:field="*{alternative_code}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('alternative_code')}" th:errors="*{alternative_code}"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="measured_unit" class="col-sm-2 col-form-label">Unidad de Medida</label>
+                            <div class="col-sm-6">
+                                <select th:field="*{measured_unit}" class="form-control"
                                         th:errorclass="'form-control alert-danger'" >                           
                                     <option value="" > Seleccione una Unidad </option>
-                                    <option th:each="measuredUnit : ${measuredUnitIterable}"
-                                            th:value="${measuredUnit.getId()}"
-                                            th:utext="${measuredUnit.getDescription()}"/>
+                                    <option th:each="measured_unit : ${measuredUnitIterable}"
+                                            th:value="${measured_unit.getId()}"
+                                            th:utext="${measured_unit.getDescription()}"/>
                                 </select>
                                 <small class="form-text text-danger"
-                                       th:if="${#fields.hasErrors('measuredUnit')}" th:errors="*{measuredUnit}"></small>
+                                       th:if="${#fields.hasErrors('measured_unit')}" th:errors="*{measured_unit}"></small>
                             </div>
                         </div>                                   
                         <div class="form-group row">
-                            <label for="measuredUnit" class="col-sm-2 col-form-label">IVA</label>
+                            <label for="product_vat" class="col-sm-2 col-form-label">IVA</label>
                             <div class="col-sm-6">
-                                <select th:field="*{productVat}" class="form-control"
+                                <select th:field="*{product_vat}" class="form-control"
                                         th:errorclass="'form-control alert-danger'" >                           
                                     <option value="" > Seleccione un porcentaje de IVA </option>
-                                    <option th:each="productVat : ${productVatIterable}"
-                                            th:value="${productVat.getId()}"
-                                            th:utext="${productVat.getDescription()}"/>
+                                    <option th:each="product_vat : ${productVatIterable}"
+                                            th:value="${product_vat.getId()}"
+                                            th:utext="${product_vat.getVat_rate()}"/>
                                 </select>
                                 <small class="form-text text-danger"
-                                       th:if="${#fields.hasErrors('productVat')}" th:errors="*{productVat}"></small>
+                                       th:if="${#fields.hasErrors('product_vat')}" th:errors="*{product_vat}"></small>
                             </div>
                         </div>                                   
                         <div class="form-group row" >

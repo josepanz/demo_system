@@ -53,13 +53,18 @@ public class ProductController {
         model.addAttribute("measuredUnitIterable", productService.findAllMeasuredUnit());
         model.addAttribute("productVatIterable", productService.findAllProductVat());
         if (result.hasErrors()) {
+            System.out.println("error in postProduct: "+result);
             return "product/addProduct";
         }
         try {
+            System.out.println("ingreso al metodo");
             productService.save(product);
+            System.out.println("hizo save");
             status.setComplete();
+            System.out.println("hizo set complete");
             flash.addFlashAttribute("success", "Producto agregado con éxito!");
         } catch (Exception e) {
+            System.out.println("catch in addProduct");
             model.addAttribute("error", e.getMessage());
             return "product/addProduct";
         }
@@ -107,5 +112,4 @@ public class ProductController {
         return "redirect:/product";
     }
 
- 
 }
