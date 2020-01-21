@@ -1,0 +1,75 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
+
+    <section layout:fragment="content">
+        <div class="container py-4">
+            <div class="card bg-dark text-white">
+                <div class="card-header">
+                    <h2>Editar Producto <a th:href="@{/product}" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a></h2>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/editProduct}" th:object="${product}" method="post">
+                        <div class="form-group row">
+                            <label for="code" class="col-sm-2 col-form-label">Código</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{code}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-sm-2 col-form-label">Nombre</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{description}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="alternative_code" class="col-sm-2 col-form-label">Código Alternativo</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{alternative_code}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('alternative_code')}" th:errors="*{alternative_code}"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="measured_unit" class="col-sm-2 col-form-label">Unidad de Medida</label>
+                            <div class="col-sm-6">
+                                <select th:field="*{measured_unit}" class="form-control"
+                                        th:errorclass="'form-control alert-danger'" >                           
+                                    <option value="" > Seleccione una Unidad </option>
+                                    <option th:each="measured_unit : ${measuredUnitIterable}"
+                                            th:value="${measured_unit.getId()}"
+                                            th:utext="${measured_unit.getDescription()}"/>
+                                </select>
+                                <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('measured_unit')}" th:errors="*{measured_unit}"></small>
+                            </div>
+                        </div>                                   
+                        <div class="form-group row">
+                            <label for="product_vat" class="col-sm-2 col-form-label">IVA</label>
+                            <div class="col-sm-6">
+                                <select th:field="*{product_vat}" class="form-control"
+                                        th:errorclass="'form-control alert-danger'" >                           
+                                    <option value="" > Seleccione un porcentaje de IVA </option>
+                                    <option th:each="product_vat : ${productVatIterable}"
+                                            th:value="${product_vat.getId()}"
+                                            th:utext="${product_vat.getVat_rate()}"/>
+                                </select>
+                                <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('product_vat')}" th:errors="*{product_vat}"></small>
+                            </div>
+                        </div>                                   
+                        <div class="form-group row" >
+                            <div class="col-sm-6">
+                                <input type="submit" th:value="${title}"
+                                       class="btn btn-secondary" />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
