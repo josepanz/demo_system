@@ -18,95 +18,107 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.developers.demo_stock.entity.Product;
+import com.developers.demo_stock.entity.ProductPresentation;
 
-import com.developers.demo_stock.service.ProductService;
+import com.developers.demo_stock.service.ProductPresentationService;
 
 @Controller
-@SessionAttributes("product")
+@SessionAttributes("productPresentation")
 public class ProductPresentationController {
 
     @Autowired
-    private ProductService productService;
+    private ProductPresentationService productPresentationService;
 
-    @GetMapping("/product")
-    public String product(Model model) {
-        model.addAttribute("productList", productService.getAllProduct());
-        model.addAttribute("title", "Producto");
-        return "product/product";
+    @GetMapping("/productPresentation")
+    public String productPresentation(Model model) {
+        model.addAttribute("productPresentationList", productPresentationService.getAllProductPresentation());
+        model.addAttribute("title", "Presentation de Producto");
+        return "productPresentation/productPresentation";
     }
 
-    @GetMapping("/addProduct")
-    public String getProduct(Map<String, Object> model) {
-        Product product = new Product();
-        model.put("measuredUnitIterable", productService.findAllMeasuredUnit());
-        model.put("productVatIterable", productService.findAllProductVat());
-        model.put("product", product);
-        model.put("title", "Agregar Producto");
-        return "product/addProduct";
+    @GetMapping("/addProductPresentation")
+    public String getProductPresentation(Map<String, Object> model) {
+        ProductPresentation productPresentation = new ProductPresentation();
+        model.put("productSizeIterable", productPresentationService.findAllProductSize());
+        model.put("productColorIterable", productPresentationService.findAllProductColor());
+        model.put("productFamilyIterable", productPresentationService.findAllProductFamily());
+        model.put("productBrandIterable", productPresentationService.findAllProductBrand());
+        model.put("productIterable", productPresentationService.findAllProduct());
+        model.put("product", productPresentation);
+        model.put("title", "Agregar Presentacion de Producto");
+        return "productPresentation/addProductPresentation";
     }
 
-    @PostMapping("/addProduct")
-    public String postProduct(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model,
+    @PostMapping("/addProductPresentation")
+    public String postProductPresentation(@Valid @ModelAttribute("productPresentation") ProductPresentation productPresentation, BindingResult result, Model model,
             SessionStatus status, RedirectAttributes flash) {
-        model.addAttribute("title", "Agregar Producto");
-        model.addAttribute("measuredUnitIterable", productService.findAllMeasuredUnit());
-        model.addAttribute("productVatIterable", productService.findAllProductVat());
+        model.addAttribute("title", "Agregar Presentacion de Producto");
+        model.addAttribute("productSizeIterable", productPresentationService.findAllProductSize());
+        model.addAttribute("productColorIterable", productPresentationService.findAllProductColor());
+        model.addAttribute("productFamilyIterable", productPresentationService.findAllProductFamily());
+        model.addAttribute("productBrandIterable", productPresentationService.findAllProductBrand());
+        model.addAttribute("productIterable", productPresentationService.findAllProduct());
         if (result.hasErrors()) {
-            System.out.println("error in postProduct: "+result);
+            System.out.println("error in postProductPresentation: "+result);
             return "product/addProduct";
         }
         try {
-            productService.save(product);
+            productPresentationService.save(productPresentation);
             status.setComplete();
-            flash.addFlashAttribute("success", "Producto agregado con éxito!");
+            flash.addFlashAttribute("success", "Presentacion de Producto agregado con éxito!");
         } catch (Exception e) {
-            System.out.println("catch in postProduct");
+            System.out.println("catch in postProductPresentation");
             model.addAttribute("error", e.getMessage());
-            return "product/addProduct";
+            return "productPresentation/addProductPresentation";
         }
-        return "redirect:/addProduct";
+        return "redirect:/addProductPresentation";
     }
 
-    @GetMapping("/editProduct/{id}")
-    public String getEditProduct(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
-        Optional<Product> product = productService.findById(id);
-        model.put("measuredUnitIterable", productService.findAllMeasuredUnit());
-        model.put("productVatIterable", productService.findAllProductVat());
-        model.put("title", "Editar Producto");
-        model.put("product", product);
-        return "product/editProduct";
+    @GetMapping("/editProductPresentation/{id}")
+    public String getEditProductPresentation(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
+        Optional<ProductPresentation> productPresentation = productPresentationService.findById(id);
+        model.put("productSizeIterable", productPresentationService.findAllProductSize());
+        model.put("productColorIterable", productPresentationService.findAllProductColor());
+        model.put("productFamilyIterable", productPresentationService.findAllProductFamily());
+        model.put("productBrandIterable", productPresentationService.findAllProductBrand());
+        model.put("productIterable", productPresentationService.findAllProduct());
+        model.put("title", "Editar Presentation Producto");
+        model.put("productPresentation", productPresentation);
+        return "productPresentation/editProductPresentation";
     }
 
-    @PostMapping("/editProduct")
-    public String putEditProduct(@Valid Product product, BindingResult result, Model model,
+    @PostMapping("/editProductPresentation")
+    public String putEditProductPresentation(@Valid ProductPresentation productPresentation, BindingResult result, Model model,
             RedirectAttributes flash, SessionStatus status) {
-        model.addAttribute("title", "Editar Producto");
-        model.addAttribute("measuredUnitIterable", productService.findAllMeasuredUnit());
-        model.addAttribute("productVatIterable", productService.findAllProductVat());
+        model.addAttribute("title", "Editar Presentation Producto");
+        model.addAttribute("productSizeIterable", productPresentationService.findAllProductSize());
+        model.addAttribute("productColorIterable", productPresentationService.findAllProductColor());
+        model.addAttribute("productFamilyIterable", productPresentationService.findAllProductFamily());
+        model.addAttribute("productBrandIterable", productPresentationService.findAllProductBrand());
+        model.addAttribute("productIterable", productPresentationService.findAllProduct());
         if (result.hasErrors()) {
             return "product/editProduct";
         }
         try {
-            productService.save(product);
+            productPresentationService.save(productPresentation);
             status.setComplete();
-            flash.addFlashAttribute("success", "Producto editado con éxito!");
+            flash.addFlashAttribute("success", "Presentacion de Producto editado con éxito!");
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return "product/editProduct";
+            return "productPresentation/editProductPresentation";
         }
-        return "redirect:/product";
+        return "redirect:/productPresentation";
     }
 
-    @GetMapping("/deleteProduct/{id}")
-    public String deleteProduct(@PathVariable(value = "id") Integer id, RedirectAttributes flash) {
+    @GetMapping("/deleteProductPresentation/{id}")
+    public String deleteProductPresentation(@PathVariable(value = "id") Integer id, RedirectAttributes flash) {
         try {
-            productService.delete(id);
-            flash.addFlashAttribute("success", "Producto eliminado con éxito!");
+            productPresentationService.delete(id);
+            flash.addFlashAttribute("success", "Presentacion de Producto eliminado con éxito!");
         } catch (Exception e) {
             flash.addFlashAttribute("error", e.getMessage());
         }
-        return "redirect:/product";
+        return "redirect:/productPresentation";
     }
 
 }

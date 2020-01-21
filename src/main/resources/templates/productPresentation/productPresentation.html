@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <p>
-                    <a href="addProduct" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>Agregar</a>
+                    <a href="addProductPresentation" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>Agregar</a>
                 </p>
                 <table class="table table-bordered table-striped table-hover">
                     <thead>
@@ -13,25 +13,35 @@
                     <th>Código</th>
                     <th>Descripción</th>
                     <th>Cód. Alternativo</th>
-                    <th>Unidad Medida</th>
-                    <th>IVA</th>
+                    <th>Color</th>
+                    <th>Tamaño</th>
+                    <th>Familia</th>
+                    <th>Marca</th>
+                    <th>Costo</th>
+                    <th>Cód. Barras</th>
+                    <th>Ancho</th>
                     <th>Fecha Agregada</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                     </thead>
                     <tbody>                   
-                        <tr th:each="product: ${productList}">
-                            <td th:text="${product.id}"></td>
-                            <td th:text="${product.code}"/></td>
-                            <td th:text="${product.description}"/></td>
-                            <td th:text="${product.alternative_code}"/></td>
-                            <td th:text="${product.measured_unit.getDescription()}"/></td>
-                            <td th:text="${product.product_vat.getVat_rate()}"/></td>
-                            <td th:text="${product.creation_date}"/></td>                                                                                          
+                        <tr th:each="productPresentation: ${productPresentationList}">
+                            <td th:text="${productPresentation:.id}"></td>
+                            <td th:text="${productPresentation:.presentation_code}"/></td>
+                            <td th:text="${productPresentation:.presentation_name}"/></td>
+                            <td th:text="${productPresentation:.alternative_code}"/></td>
+                            <td th:text="${productPresentation:.product_color.getName()}"/></td>
+                            <td th:text="${productPresentation:.product_size.getDescription()}"/></td>
+                            <td th:text="${productPresentation:.product_family.getName()}"/></td>
+                            <td th:text="${productPresentation:.product_brand.getName()}"/></td>
+                            <td th:text="${productPresentation:.cost}"/></td>
+                            <td th:text="${productPresentation:.barcode}"/></td>
+                            <td th:text="${productPresentation:.weight}"/></td>
+                            <td th:text="${productPresentation:.creation_date}"/></td>                                                                                          
                             <td><a class="btn btn-primary btn-xs"
-                                   th:href="@{/editProduct/} + ${product.id}" th:text="'editar'"></a></td>
+                                   th:href="@{/editProductPresentation/} + ${productPresentation:.id}" th:text="'editar'"></a></td>
                             <td><a class="btn btn-danger btn-xs"
-                                   th:href="@{/deleteProduct/} + ${product.id}" th:text="'eliminar'"
+                                   th:href="@{/deleteProductPresentation/} + ${productPresentation:.id}" th:text="'eliminar'"
                                    onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
                         </tr >
                     </tbody>
