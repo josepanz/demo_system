@@ -44,7 +44,7 @@ public class ProductPresentationController {
         model.put("productFamilyIterable", productPresentationService.findAllProductFamily());
         model.put("productBrandIterable", productPresentationService.findAllProductBrand());
         model.put("productIterable", productPresentationService.findAllProduct());
-        model.put("product", productPresentation);
+        model.put("productPresentation", productPresentation);
         model.put("title", "Agregar Presentacion de Producto");
         return "productPresentation/addProductPresentation";
     }
@@ -52,6 +52,8 @@ public class ProductPresentationController {
     @PostMapping("/addProductPresentation")
     public String postProductPresentation(@Valid @ModelAttribute("productPresentation") ProductPresentation productPresentation, BindingResult result, Model model,
             SessionStatus status, RedirectAttributes flash) {
+                System.out.println(" ***** A ********");
+
         model.addAttribute("title", "Agregar Presentacion de Producto");
         model.addAttribute("productSizeIterable", productPresentationService.findAllProductSize());
         model.addAttribute("productColorIterable", productPresentationService.findAllProductColor());
@@ -60,7 +62,7 @@ public class ProductPresentationController {
         model.addAttribute("productIterable", productPresentationService.findAllProduct());
         if (result.hasErrors()) {
             System.out.println("error in postProductPresentation: "+result);
-            return "product/addProduct";
+            return "productPresentation/addProductPresentation";
         }
         try {
             productPresentationService.save(productPresentation);
@@ -71,6 +73,8 @@ public class ProductPresentationController {
             model.addAttribute("error", e.getMessage());
             return "productPresentation/addProductPresentation";
         }
+                System.out.println(" ***** B ********");
+
         return "redirect:/addProductPresentation";
     }
 
@@ -97,7 +101,7 @@ public class ProductPresentationController {
         model.addAttribute("productBrandIterable", productPresentationService.findAllProductBrand());
         model.addAttribute("productIterable", productPresentationService.findAllProduct());
         if (result.hasErrors()) {
-            return "product/editProduct";
+            return "productPresentation/editProductPresentation";
         }
         try {
             productPresentationService.save(productPresentation);

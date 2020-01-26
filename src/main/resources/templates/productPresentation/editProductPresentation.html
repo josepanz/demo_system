@@ -34,33 +34,99 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="measured_unit" class="col-sm-2 col-form-label">Unidad de Medida</label>
+                            <label for="barcode" class="col-sm-2 col-form-label">Código de Barras</label>
                             <div class="col-sm-6">
-                                <select th:field="*{measured_unit}" class="form-control"
-                                        th:errorclass="'form-control alert-danger'" >                           
-                                    <option value="" > Seleccione una Unidad </option>
-                                    <option th:each="measured_unit : ${measuredUnitIterable}"
-                                            th:value="${measured_unit.getId()}"
-                                            th:utext="${measured_unit.getDescription()}"/>
-                                </select>
-                                <small class="form-text text-danger"
-                                       th:if="${#fields.hasErrors('measured_unit')}" th:errors="*{measured_unit}"></small>
+                                <input type="text" th:field="*{barcode}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('barcode')}" th:errors="*{barcode}"></small>
                             </div>
-                        </div>                                   
+                        </div>
                         <div class="form-group row">
-                            <label for="product_vat" class="col-sm-2 col-form-label">IVA</label>
+                            <label for="cost" class="col-sm-2 col-form-label">Código de Barras</label>
                             <div class="col-sm-6">
-                                <select th:field="*{product_vat}" class="form-control"
+                                <input type="text" th:field="*{cost}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="weight" class="col-sm-2 col-form-label">Código de Barras</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{weight}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="product" class="col-sm-2 col-form-label">Producto</label>
+                            <div class="col-sm-6">
+                                <select th:field="*{product}" class="form-control"
                                         th:errorclass="'form-control alert-danger'" >                           
-                                    <option value="" > Seleccione un porcentaje de IVA </option>
-                                    <option th:each="product_vat : ${productVatIterable}"
-                                            th:value="${product_vat.getId()}"
-                                            th:utext="${product_vat.getVat_rate()}"/>
+                                    <option value="" > Seleccione una producto </option>
+                                    <option th:each="product : ${productIterable}"
+                                            th:value="${product.getId()}"
+                                            th:utext="${product.getDescription()}"/>
                                 </select>
                                 <small class="form-text text-danger"
-                                       th:if="${#fields.hasErrors('product_vat')}" th:errors="*{product_vat}"></small>
+                                       th:if="${#fields.hasErrors('product')}" th:errors="*{product}"></small>
                             </div>
-                        </div>                                   
+                        </div> 
+                        <div class="form-group row">
+                            <label for="product_color" class="col-sm-2 col-form-label">Color</label>
+                            <div class="col-sm-6">
+                                <select th:field="*{productColor}" class="form-control"
+                                        th:errorclass="'form-control alert-danger'" >                           
+                                    <option value="" > Seleccion un color </option>
+                                    <option th:each="productColor : ${productColorIterable}"
+                                            th:value="${productColor.getId()}"
+                                            th:utext="${productColor.getName()}"/>
+                                </select>
+                                <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('productColor')}" th:errors="*{productColor}"></small>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                            <label for="productSize" class="col-sm-2 col-form-label">Tamaño</label>
+                            <div class="col-sm-6">
+                                <select th:field="*{productSize}" class="form-control"
+                                        th:errorclass="'form-control alert-danger'" >                           
+                                    <option value="" > Seleccion un tamaño </option>
+                                    <option th:each="productSize : ${productSizeIterable}"
+                                            th:value="${productSize.getId()}"
+                                            th:utext="${productSize.getDescription()}"/>
+                                </select>
+                                <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('productSize')}" th:errors="*{productSize}"></small>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                            <label for="productBrand" class="col-sm-2 col-form-label">Marca</label>
+                            <div class="col-sm-6">
+                                <select th:field="*{productBrand}" class="form-control"
+                                        th:errorclass="'form-control alert-danger'" >                           
+                                    <option value="" > Seleccion una marca </option>
+                                    <option th:each="productBrand : ${productBrandIterable}"
+                                            th:value="${productBrand.getId()}"
+                                            th:utext="${productBrand.getName()}"/>
+                                </select>
+                                <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('productBrand')}" th:errors="*{productBrand}"></small>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                            <label for="productFamily" class="col-sm-2 col-form-label">Familia</label>
+                            <div class="col-sm-6">
+                                <select th:field="*{productFamily}" class="form-control"
+                                        th:errorclass="'form-control alert-danger'" >                           
+                                    <option value="" > Seleccion una Familia </option>
+                                    <option th:each="productFamily : ${productFamilyIterable}"
+                                            th:value="${productFamily.getId()}"
+                                            th:utext="${productFamily.getName()}"/>
+                                </select>
+                                <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('productFamily')}" th:errors="*{productFamily}"></small>
+                            </div>
+                        </div>                                    
                         <div class="form-group row" >
                             <div class="col-sm-6">
                                 <input type="submit" th:value="${title}"

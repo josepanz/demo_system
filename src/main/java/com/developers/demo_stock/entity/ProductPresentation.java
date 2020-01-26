@@ -88,10 +88,7 @@ public class ProductPresentation {
     
     @Column
     private double weight;
-    
-    //@ManyToOne
-    //@JoinColumn (name = "modelo_id")
-    //Modelo modelo;
+   
 
 
     @PrePersist
