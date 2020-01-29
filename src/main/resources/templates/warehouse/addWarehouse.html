@@ -1,0 +1,71 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
+
+    <section layout:fragment="content">
+        <div class="container py-4">
+            <div class="card bg-dark text-white">
+                <div class="card-header">
+                    <h2>Agregar Depósito <a th:href="@{/warehouse}" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a></h2>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/addWarehouse}" th:object="${warehouse}" method="post">
+                        <div class="form-group row">
+                            <label for="code" class="col-sm-2 col-form-label">Código</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{code}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-sm-2 col-form-label">Nombre</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{description}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="address" class="col-sm-2 col-form-label">Dirección</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{address}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></small>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                            <label for="telephone" class="col-sm-2 col-form-label">Telefono</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{telephone}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}"></small>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                            <label for="company_branch" class="col-sm-2 col-form-label">Sucursal</label>
+                            <div class="col-sm-6">
+                                <select th:field="*{company_branch}" class="form-control"
+                                        th:errorclass="'form-control alert-danger'" >                           
+                                    <option value="" > Seleccione una Sucursal </option>
+                                    <option th:each="company_branch : ${companyBranchIterable}"
+                                            th:value="${company_branch.getId()}"
+                                            th:utext="${company_branch.getBranch_name()}"/>
+                                </select>
+                                <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('company_branch')}" th:errors="*{company_branch}"></small>
+                            </div>
+                        </div> 
+
+
+                        <div class="form-group row" >
+                            <div class="col-sm-6">
+                                <input type="submit" th:value="${title}"
+                                       class="btn btn-secondary" />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>

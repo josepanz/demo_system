@@ -21,6 +21,7 @@
                     <th>Cód. Barras</th>
                     <th>Peso</th>
                     <th>Fecha Agregada</th>
+                    <th>Habilitado</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                     </thead>
@@ -38,6 +39,10 @@
                             <td th:text="${productPresentation.barcode}"/></td>
                             <td th:text="${productPresentation.weight}"/></td>
                             <td th:text="${productPresentation.creation_date}"/></td>                                                                                          
+                            <td align="center"/>
+                             <span th:if="${productPresentation.enabled}" class="glyphicon glyphicon-ok"></span>
+                             <span th:unless="${productPresentation.enabled}" class="glyphicon glyphicon-remove"></span>
+                            </td>                                                                                       
                             <td><!--a class="btn btn-primary btn-xs"
                                    th:href="@{/editProductPresentation/} + ${productPresentation.id}" th:text="'editar'"></a-->
                                 <a class="btn btn-primary btn-xs"
