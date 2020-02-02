@@ -76,7 +76,7 @@ public class ProductPresentation {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    //@NotNull
+    @NotNull
     private Product product;
 
     @Column
