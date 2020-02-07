@@ -5,22 +5,31 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Entity
-public class CivilStatus {
+@Entity(name="person_type")
+public class PersonType {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
+
+    @Column
+    @NotEmpty
+    @Size(max = 50, message = "Tamaño no permitido")
+    private String code;
 
     @Column
     @NotEmpty
@@ -30,19 +39,23 @@ public class CivilStatus {
     @Column
     @NotEmpty
     @Size(max = 50, message = "Tamaño no permitido")
-    private String code;
+    private String value;
+
 
     @Temporal(TemporalType.DATE)
     @Column
     private Date creation_date;
 
-    public CivilStatus() {
-
-    }
-
+    @Column
+    private boolean enabled;
+    
     @PrePersist
     public void prePersist() {
         creation_date = new Date();
+    }
+
+    public PersonType() {
+        super();
     }
 
     public int getId() {
@@ -53,6 +66,14 @@ public class CivilStatus {
         this.id = id;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -61,12 +82,12 @@ public class CivilStatus {
         this.description = description;
     }
 
-    public String getCode() {
-        return code;
+    public String getValue() {
+        return value;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public Date getCreation_date() {
@@ -77,13 +98,23 @@ public class CivilStatus {
         this.creation_date = creation_date;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + this.id;
-        hash = 67 * hash + Objects.hashCode(this.description);
-        hash = 67 * hash + Objects.hashCode(this.code);
-        hash = 67 * hash + Objects.hashCode(this.creation_date);
+        hash = 13 * hash + this.id;
+        hash = 13 * hash + Objects.hashCode(this.code);
+        hash = 13 * hash + Objects.hashCode(this.description);
+        hash = 13 * hash + Objects.hashCode(this.value);
+        hash = 13 * hash + Objects.hashCode(this.creation_date);
+        hash = 13 * hash + (this.enabled ? 1 : 0);
         return hash;
     }
 
@@ -98,22 +129,28 @@ public class CivilStatus {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final CivilStatus other = (CivilStatus) obj;
+        final PersonType other = (PersonType) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.description, other.description)) {
+        if (this.enabled != other.enabled) {
             return false;
         }
         if (!Objects.equals(this.code, other.code)) {
             return false;
         }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.value, other.value)) {
+            return false;
+        }
+  
         if (!Objects.equals(this.creation_date, other.creation_date)) {
             return false;
         }
         return true;
     }
 
-  
 
 }

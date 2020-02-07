@@ -121,7 +121,7 @@
                         </a></p>
                     <div class="collapse" id="collapseOrganization">
                         <div class="card card-body bg-success">
-                            <a id="" href="#" class="list-group-item list-group-item-action bg-success text-white">Usuario</a>
+                            <a id="" href="users" class="list-group-item list-group-item-action bg-success text-white">Usuario</a>
                             <a id="" href="#" class="list-group-item list-group-item-action bg-success text-white">Grupo</a>
                             <a id="" href="#" class="list-group-item list-group-item-action bg-success text-white">Cargos</a>
                         </div>
@@ -157,7 +157,12 @@
                                     <a class="dropdown-item" href="#">Action</a>
                                     <a class="dropdown-item" href="#">Another action</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="logout">Salir</a>
+                                    <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
+                                        <form action="#" th:action="@{/logout}" method="post">					
+                                            <input class="dropdown-item" type="submit" value="Salir" />
+                                            <a class="dropdown-item" href="logout">Salir</a>
+                                        </form>
+                                    </div>
                                 </div>
                             </li>
                         </ul>
