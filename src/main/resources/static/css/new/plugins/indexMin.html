@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <title th:text="${title}"></title>
+
+        <link rel="stylesheet"
+              th:href="@{/css/jquery-ui.min.css}" /> 	
+        
+        <link th:href="@{/css/glyphicon.css}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link th:href="@{/css/simple-sidebar.css}" rel="stylesheet">
+        <!-- new -->
+		<link th:href="@{/css/new/bootstrap.css}" rel="stylesheet">
+		<link th:href="@{/css/new/bootstrap.misn.css}" rel="stylesheet">
+		<script src="/css/new/bootstrap.bundle.js"></script>
+		<script src="/css/new/bootstrap.bundle.min.js"></script>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                setTimeout(function () {
+                    $(".content").fadeOut(1500);
+                }, 3000);
+
+                setTimeout(function () {
+                    $(".content2").fadeIn(1500);
+                }, 6000);
+            });
+            $().alert('close')
+        </script>
+    </head>
+    <body>	       
+        <div class="d-flex" id="wrapper" th:fragment="wrapper">
+
+            <!-- Sidebar -->
+            <div class="bg-success border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading text-white">Menu </div>
+                <div class="list-group list-group-flush">
+                    <!-- Maestro de Informacion-->
+                    <p>
+                        <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapseMaster" role="button" aria-expanded="false" aria-controls="collapseMaster">
+                            Maestro
+                        </a></p>
+                    <div class="collapse" id="collapseMaster">
+                        <div class="card card-body bg-success">
+                            <p>
+                                <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapsePerson" role="button" aria-expanded="false" aria-controls="collapsePerson">
+                                    Personas
+                                </a></p>
+                            <div class="collapse" id="collapsePerson">
+                                <div class="card card-body bg-success border-white ">
+                                    <a id="customerId" href="#" class="list-group-item-action bg-success text-white" >Clientes</a>
+                                    <a id="employeedId" href="#" class="list-group-item-action bg-success text-white" >Empleados</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapseMaster">
+                        <div class="card card-body bg-success">
+                            <p>
+                                <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapseProduct" role="button" aria-expanded="false" aria-controls="collapseProduct">
+                                    Productos
+                                </a></p>
+                            <div class="collapse" id="collapseProduct">
+                                <div class="card card-body bg-success border-white ">
+                                    <a id="productId" href="product" class="list-group-item-action bg-success text-white" >Productos</a>
+                                    <a id="productPresentationId" href="productPresentation" class="list-group-item-action bg-success text-white" >Presentaciones de Productos</a>
+                                    <a id="productFamilyId" href="productFamily" class="list-group-item-action bg-success text-white" >Familia de Productos</a>
+                                    <a id="productBrandId" href="productBrand" class="list-group-item-action bg-success text-white" >Marca de Productos</a>
+                                    <a id="productColorId" href="productColor" class="list-group-item-action bg-success text-white" >Color de Productos</a>
+                                    <a id="productSizeId" href="productSize" class="list-group-item-action bg-success text-white" >Tamaño de Productos</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapseMaster">
+                        <div class="card card-body bg-success">
+                            <p>
+                                <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false" aria-controls="collapseLocation">
+                                    Localidades
+                                </a></p>
+                            <div class="collapse" id="collapseLocation">
+                                <div class="card card-body bg-success border-white">
+                                    <a id="cityId" href="city" class="list-group-item-action bg-success text-white" >Ciudades</a>
+                                    <a id="departamentId" href="departament" class="list-group-item-action bg-success text-white" >Departamentos</a>
+                                    <a id="countryId" href="country" class=" list-group-item-action bg-success text-white">Paises</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapseMaster">
+                        <div class="card card-body bg-success">
+                            <p>
+                                <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapseCurrency" role="button" aria-expanded="false" aria-controls="collapseCurrency">
+                                    Monedas
+                                </a></p>
+                            <div class="collapse" id="collapseCurrency">
+                                <div class="card card-body bg-success border-white">
+                                    <a id="currencyId" href="currency" class="list-group-item-action bg-success text-white" >Monedas</a>
+                                    <a id="currencyExchangeId" href="#" class="list-group-item-action bg-success text-white" >Cambio Moneda</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Configuraciones -->
+                    <p>
+                        <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapseOrganization" role="button" aria-expanded="false" aria-controls="collapseOrganization">
+                            Organizacion
+                        </a></p>
+                    <div class="collapse" id="collapseOrganization">
+                        <div class="card card-body bg-success">
+                            <a id="" href="#" class="list-group-item list-group-item-action bg-success text-white">Usuario</a>
+                            <a id="" href="#" class="list-group-item list-group-item-action bg-success text-white">Grupo</a>
+                            <a id="" href="#" class="list-group-item list-group-item-action bg-success text-white">Cargos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- /#sidebar-wrapper -->
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+
+                <nav class="navbar navbar-expand-lg navbar-light bg-success border-bottom">
+                    <button class="btn btn-primary" id="menu-toggle"><span id="toggleButton" class="glyphicon glyphicon-th-list" aria-hidden="true">Ocultar</span></button>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                            <li class="nav-item active">
+                                <a class="nav-link text-white" href="index">Inicio <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white glyphicon glyphicon-user" href="#"></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white glyphicon glyphicon-wrench" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right text-white" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="logout">Salir</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- verificamos primero si es distinto a nulo, antes de ejecutar el codigo javascript-->
+                <div class="successMessage" th:if="${success != null}">
+                    <div id="content" class="content" >	 
+                        <div style="position: fixed; top: 70px; right: 20px; width: 400px; z-index: 9999">	
+                            <div class="alert alert-success fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button><p th:text="${success}"></p></div></div></div></div>
+
+                <div class="dangerMessage" th:if="${error != null}">
+                    <div id="content" class="content" >	 
+                        <div style="position: fixed; top: 70px; right: 20px; width: 400px; z-index: 9999">	
+                            <div class="alert alert-danger fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button><p th:text="${error}"></p></div></div></div></div>
+
+                <div class="dangerMessage" th:if="${warning != null}">
+                    <div id="content" class="content" >	 
+                        <div style="position: fixed; top: 70px; right: 20px; width: 400px; z-index: 9999">	
+                            <div class="alert alert-warning fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button><p th:text="${warning}"></p></div></div></div></div>
+
+                <div class="dangerMessage" th:if="${info != null}">
+                    <div id="content" class="content" >	 
+                        <div style="position: fixed; top: 70px; right: 20px; width: 400px; z-index: 9999">	
+                            <div class="alert alert-info fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button><p th:text="${info}"></p></div></div></div></div>
+
+                <section layout:fragment="content">
+
+                </section>
+
+            </div>
+            <!-- /#page-content-wrapper -->
+
+        </div>
+
+        <!-- /#wrapper -->
+        <div th:fragment="scripts"> 
+            <!-- Bootstrap core JavaScript -->
+            <script src="/vendor/jquery/jquery.min.js"></script>
+            <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Menu Toggle Script -->
+            <script>
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                //se realiza el cambio de texto del boton
+                var buttonValue = document.getElementById("toggleButton").value;
+                if (buttonValue == undefined || buttonValue == "Ocultar") {
+                    document.getElementById("toggleButton").innerHTML = "Mostrar";
+                    document.getElementById("toggleButton").value = "Mostrar";
+                } else if (buttonValue == "Mostrar") {
+                    document.getElementById("toggleButton").innerHTML = "Ocultar";
+                    document.getElementById("toggleButton").value = "Ocultar";
+                }
+                $("#wrapper").toggleClass("toggled");
+            });
+            </script>	
+        </div>
+    </body>
+    <footer th:fragment="footer" class="page-footer font-small bg-dark pt-1">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center text-white py-3">© 2019 Copyright:
+            <a href="#"> Demo Developers</a>
+        </div>
+        <!-- Copyright -->
+    </footer>	
+</html>

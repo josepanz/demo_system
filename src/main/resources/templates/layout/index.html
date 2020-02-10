@@ -1,237 +1,448 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
     <head>
         <meta charset="UTF-8">
-        <title th:text="${title}"></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet"
-              th:href="@{/css/jquery-ui.min.css}" />
+        <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
         <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
         <link th:href="@{/css/glyphicon.css}" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link th:href="@{/css/simple-sidebar.css}" rel="stylesheet">
 
+        <!-- Font Awesome -->
+        <link rel="stylesheet" th:href="@{/css/new/plugins/fontawesome-free/css/all.min.css}">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Tempusdominus Bbootstrap 4 -->
+        <link rel="stylesheet" th:href="@{/css/new/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+        <!-- iCheck -->
+        <link rel="stylesheet" th:href="@{/css/new/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+        <!-- JQVMap -->
+        <link rel="stylesheet" th:href="@{/css/new/plugins/jqvmap/jqvmap.min.css}">
+        <!-- Theme style -->
+        <link rel="stylesheet" th:href="@{/css/new/dist/css/adminlte.min.css}">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" th:href="@{/css/new/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+        <!-- Daterange picker -->
+        <link rel="stylesheet" th:href="@{/css/new/plugins/daterangepicker/daterangepicker.css}">
+        <!-- summernote -->
+        <link rel="stylesheet" th:href="@{/css/new/plugins/summernote/summernote-bs4.css}">
+        <!-- Google Font: Source Sans Pro -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
 
-        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                setTimeout(function () {
-                    $(".content").fadeOut(1500);
-                }, 3000);
 
-                setTimeout(function () {
-                    $(".content2").fadeIn(1500);
-                }, 6000);
-            });
-            $().alert('close')
-        </script>
+
+        <title th:text="${title}"></title>
     </head>
-    <body>	       
-        <div class="d-flex" id="wrapper" th:fragment="wrapper">
 
-            <!-- Sidebar -->
-            <div class="bg-success border-right" id="sidebar-wrapper">
-                <div class="sidebar-heading text-white">Menu </div>
-                <div class="list-group list-group-flush">
-                    <!-- Maestro de Informacion-->
-                    <p>
-                        <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapseMaster" role="button" aria-expanded="false" aria-controls="collapseMaster">
-                            Maestro
-                        </a></p>
-                    <div class="collapse" id="collapseMaster">
-                        <div class="card card-body bg-success">
-                            <p>
-                                <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapsePerson" role="button" aria-expanded="false" aria-controls="collapsePerson">
-                                    Personas
-                                </a></p>
-                            <div class="collapse" id="collapsePerson">
-                                <div class="card card-body bg-success border-white ">
-                                    <a id="customerId" href="#" class="list-group-item-action bg-success text-white" >Clientes</a>
-                                    <a id="employeedId" href="#" class="list-group-item-action bg-success text-white" >Empleados</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="collapse" id="collapseMaster">
-                        <div class="card card-body bg-success">
-                            <p>
-                                <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapseProduct" role="button" aria-expanded="false" aria-controls="collapseProduct">
-                                    Productos
-                                </a></p>
-                            <div class="collapse" id="collapseProduct">
-                                <div class="card card-body bg-success border-white ">
-                                    <a id="productId" href="product" class="list-group-item-action bg-success text-white" >Productos</a>
-                                    <a id="productPresentationId" href="productPresentation" class="list-group-item-action bg-success text-white" >Presentaciones de Productos</a>
-                                    <a id="productFamilyId" href="productFamily" class="list-group-item-action bg-success text-white" >Familia de Productos</a>
-                                    <a id="productBrandId" href="productBrand" class="list-group-item-action bg-success text-white" >Marca de Productos</a>
-                                    <a id="productColorId" href="productColor" class="list-group-item-action bg-success text-white" >Color de Productos</a>
-                                    <a id="productSizeId" href="productSize" class="list-group-item-action bg-success text-white" >Tamaño de Productos</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="collapse" id="collapseMaster">
-                        <div class="card card-body bg-success">
-                            <p>
-                                <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false" aria-controls="collapseLocation">
-                                    Localidades
-                                </a></p>
-                            <div class="collapse" id="collapseLocation">
-                                <div class="card card-body bg-success border-white">
-                                    <a id="cityId" href="city" class="list-group-item-action bg-success text-white" >Ciudades</a>
-                                    <a id="departamentId" href="departament" class="list-group-item-action bg-success text-white" >Departamentos</a>
-                                    <a id="countryId" href="country" class=" list-group-item-action bg-success text-white">Paises</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="collapse" id="collapseMaster">
-                        <div class="card card-body bg-success">
-                            <p>
-                                <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapseCurrency" role="button" aria-expanded="false" aria-controls="collapseCurrency">
-                                    Monedas
-                                </a></p>
-                            <div class="collapse" id="collapseCurrency">
-                                <div class="card card-body bg-success border-white">
-                                    <a id="currencyId" href="currency" class="list-group-item-action bg-success text-white" >Monedas</a>
-                                    <a id="currencyExchangeId" href="#" class="list-group-item-action bg-success text-white" >Cambio Moneda</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="collapse" id="collapseMaster">
-                        <div class="card card-body bg-success">
-                            <p>
-                                <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapseWarehouse" role="button" aria-expanded="false" aria-controls="collapseWarehouse">
-                                    Depositos
-                                </a></p>
-                            <div class="collapse" id="collapseWarehouse">
-                                <div class="card card-body bg-success border-white">
-                                    <a id="warehouseId" href="warehouse" class="list-group-item-action bg-success text-white" >Depósitos</a>
-                                    <a id="warehouseStockId" href="warehouseStock" class="list-group-item-action bg-success text-white" >Existencia por Depósito</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Configuraciones -->
-                    <p>
-                        <a class="list-group-item list-group-item-action bg-success text-white" data-toggle="collapse" href="#collapseOrganization" role="button" aria-expanded="false" aria-controls="collapseOrganization">
-                            Organizacion
-                        </a></p>
-                    <div class="collapse" id="collapseOrganization">
-                        <div class="card card-body bg-success">
-                            <a id="" href="users" class="list-group-item list-group-item-action bg-success text-white">Usuario</a>
-                            <a id="" href="#" class="list-group-item list-group-item-action bg-success text-white">Grupo</a>
-                            <a id="" href="#" class="list-group-item list-group-item-action bg-success text-white">Cargos</a>
-                        </div>
+    <body class="hold-transition sidebar-mini layout-fixed">
+        <nav class="main-header navbar navbar-expand navbar-dark bg-dark"  th:fragment="wrapper">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+
+            <!-- SEARCH FORM -->
+            <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
                 </div>
-            </div>
+            </form>
 
-            <!-- /#sidebar-wrapper -->
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
 
-            <!-- Page Content -->
-            <div id="page-content-wrapper">
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-user"></i>
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-success border-bottom">
-                    <button class="btn btn-primary" id="menu-toggle"><span id="toggleButton" class="glyphicon glyphicon-th-list" aria-hidden="true">Ocultar</span></button>
-
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                            <li class="nav-item active">
-                                <a class="nav-link text-white" href="index">Inicio <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white glyphicon glyphicon-user" href="#"></a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white glyphicon glyphicon-wrench" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right text-white" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
-                                        <form action="#" th:action="@{/logout}" method="post">					
-                                            <input class="dropdown-item" type="submit" value="Salir" />
-                                            <a class="dropdown-item" href="logout">Salir</a>
-                                        </form>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
+                </li> 
+                <li class="nav-item">
+                    <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
+                        <form action="#" th:action="@{/logout}" method="post">					
+                            <!--input class="dropdown-item" type="submit" value="Salir" /-->
+                            <a class="nav-link"  href="logout"><i class="fas fa-sign-out-alt"></i></a>
+                        </form>
+                    </div>
+                    <!--a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a-->
+                </li> 
+            </ul>
+        </nav>
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="/css/new/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                     style="opacity: .8">
+                <span class="brand-text font-weight-light">Menú</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                             with font-awesome or any other icon font library -->
+                        <li class="nav-header">MAESTRO</li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-friends"></i>
+                                <p>
+                                    Personas
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Clientes</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Empleados</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-cube"></i>
+                                <p>
+                                    Productos
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="product" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Producto</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productPresentation" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Presentación</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productFamily" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Familia</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productBrand" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Marca</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productColor" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Color</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productSize" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tamaño</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="city" class="nav-link">
+                                <i class="nav-icon fas fa-map-marked"></i>
+                                <p>
+                                    Localidades
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="city" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ciudad</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="departament" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Departamento</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="country" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>País</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-coins"></i>
+                                <p>
+                                    Monedas
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="currency" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Moneda</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cambio</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-warehouse"></i>
+                                <p>
+                                    Depósitos
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="warehouse" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Depósito</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="warehouseStock" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Existencia por Depósito</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-header">ORGANIZACIÓN</li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fad fa-user"></i>
+                                <p>
+                                    Usuarios
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="users" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Usuario</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/chartjs.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>ChartJS</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/flot.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Flot</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/inline.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Inline</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fad fa-users"></i>
+                                <p>
+                                    Grupos
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="pages/charts/chartjs.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>ChartJS</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/flot.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Flot</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/inline.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Inline</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fad fa-sitemap"></i>
+                                <p>
+                                    Cargos
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="pages/charts/chartjs.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>ChartJS</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/flot.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Flot</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/inline.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Inline</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
                 </nav>
-                <!-- verificamos primero si es distinto a nulo, antes de ejecutar el codigo javascript-->
-                <div class="successMessage" th:if="${success != null}">
-                    <div id="content" class="content" >	 
-                        <div style="position: fixed; top: 70px; right: 20px; width: 400px; z-index: 9999">	
-                            <div class="alert alert-success fade show" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button><p th:text="${success}"></p></div></div></div></div>
-
-                <div class="dangerMessage" th:if="${error != null}">
-                    <div id="content" class="content" >	 
-                        <div style="position: fixed; top: 70px; right: 20px; width: 400px; z-index: 9999">	
-                            <div class="alert alert-danger fade show" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button><p th:text="${error}"></p></div></div></div></div>
-
-                <div class="dangerMessage" th:if="${warning != null}">
-                    <div id="content" class="content" >	 
-                        <div style="position: fixed; top: 70px; right: 20px; width: 400px; z-index: 9999">	
-                            <div class="alert alert-warning fade show" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button><p th:text="${warning}"></p></div></div></div></div>
-
-                <div class="dangerMessage" th:if="${info != null}">
-                    <div id="content" class="content" >	 
-                        <div style="position: fixed; top: 70px; right: 20px; width: 400px; z-index: 9999">	
-                            <div class="alert alert-info fade show" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button><p th:text="${info}"></p></div></div></div></div>
-
-                <section layout:fragment="content">
-
-                </section>
-
+                <!-- /.sidebar-menu -->
             </div>
-            <!-- /#page-content-wrapper -->
+            <!-- /.sidebar -->
+        </aside>
 
-        </div>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- verificamos primero si es distinto a nulo, antes de ejecutar el codigo javascript-->
+            <div class="successMessage" th:if="${success != null}">
+                <div id="content" class="content" >	 
+                    <div style="position: fixed; top: 70px; right: 20px; width: 400px; z-index: 9999">	
+                        <div class="alert alert-success fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button><p th:text="${success}"></p></div></div></div></div>
 
-        <!-- /#wrapper -->
-        <div th:fragment="scripts"> 
-            <!-- Bootstrap core JavaScript -->
-            <script src="/vendor/jquery/jquery.min.js"></script>
-            <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <!-- Menu Toggle Script -->
-            <script>
-            $("#menu-toggle").click(function (e) {
-                e.preventDefault();
-                //se realiza el cambio de texto del boton
-                var buttonValue = document.getElementById("toggleButton").value;
-                if (buttonValue == undefined || buttonValue == "Ocultar") {
-                    document.getElementById("toggleButton").innerHTML = "Mostrar";
-                    document.getElementById("toggleButton").value = "Mostrar";
-                } else if (buttonValue == "Mostrar") {
-                    document.getElementById("toggleButton").innerHTML = "Ocultar";
-                    document.getElementById("toggleButton").value = "Ocultar";
-                }
-                $("#wrapper").toggleClass("toggled");
-            });
-            </script>	
+            <div class="dangerMessage" th:if="${error != null}">
+                <div id="content" class="content" >	 
+                    <div style="position: fixed; top: 70px; right: 20px; width: 400px; z-index: 9999">	
+                        <div class="alert alert-danger fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button><p th:text="${error}"></p></div></div></div></div>
+
+            <div class="dangerMessage" th:if="${warning != null}">
+                <div id="content" class="content" >	 
+                    <div style="position: fixed; top: 70px; right: 20px; width: 400px; z-index: 9999">	
+                        <div class="alert alert-warning fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button><p th:text="${warning}"></p></div></div></div></div>
+
+            <div class="dangerMessage" th:if="${info != null}">
+                <div id="content" class="content" >	 
+                    <div style="position: fixed; top: 70px; right: 20px; width: 400px; z-index: 9999">	
+                        <div class="alert alert-info fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button><p th:text="${info}"></p></div></div></div></div>
+
+            <section layout:fragment="content" class="content">
+
+            </section>
+            <!-- /.content -->
         </div>
+        <script src="/css/new/plugins/jquery/jquery.min.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="/css/new/plugins/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>
+            $.widget.bridge('uibutton', $.ui.button)
+        </script>
+        <!-- Bootstrap 4 -->
+        <script src="/css/new/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- ChartJS -->
+        <script src="/css/new/plugins/chart.js/Chart.min.js"></script>
+        <!-- Sparkline -->
+        <script src="/css/new/plugins/sparklines/sparkline.js"></script>
+        <!-- JQVMap -->
+        <script src="/css/new/plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="/css/new/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="/css/new/plugins/jquery-knob/jquery.knob.min.js"></script>
+        <!-- daterangepicker -->
+        <script src="/css/new/plugins/moment/moment.min.js"></script>
+        <script src="/css/new/plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script src="/css/new/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- Summernote -->
+        <script src="/css/new/plugins/summernote/summernote-bs4.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="/css/new/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="/css/new/dist/js/adminlte.js"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="/css/new/dist/js/pages/dashboard.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="/css/new/dist/js/demo.js"></script>
     </body>
     <footer th:fragment="footer" class="page-footer font-small bg-dark pt-1">
         <!-- Copyright -->
@@ -239,5 +450,5 @@
             <a href="#"> Demo Developers</a>
         </div>
         <!-- Copyright -->
-    </footer>	
+    </footer>
 </html>
