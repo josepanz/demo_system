@@ -1,11 +1,14 @@
 package com.developers.demo_stock.controllers;
 
 
+
 import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,11 +16,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
 import com.developers.demo_stock.entity.Country;
 import com.developers.demo_stock.service.CountryService;
+import com.developers.demo_stock.util.paginator.PageRender;
 
 @Controller
 @SessionAttributes("country")
@@ -27,10 +34,15 @@ public class CountryController {
 	private CountryService countryService;
 
 	@GetMapping("/country")
-	public String city(Model model) {
-		model.addAttribute("countryList", countryService.getAllCountry());
+	public String city(Model model,@RequestParam(name = "page", defaultValue = "0") int page) {
+		PageRequest pageRequest = PageRequest.of(page, 2);
+		Page<Country> countryPage = countryService.findAll(pageRequest);
+		PageRender<Country> pageRender = new PageRender<Country>("/country", countryPage);
+		//model.addAttribute("countryList", countryService.getAllCountry());
+		model.addAttribute("countryList", countryPage);
 		/* para poner titulo pag. web titulo(se encuentra en el layout) */
 		model.addAttribute("title", "País");
+		model.addAttribute("page", pageRender);
 		return "country/country";
 	}
 
@@ -79,6 +91,7 @@ public class CountryController {
 			return "country/editCountry";
 		}		
 		try {
+			
 			countryService.save(country);            
 			status.setComplete();		
 			flash.addFlashAttribute("success", "Pais editado con éxito!");			

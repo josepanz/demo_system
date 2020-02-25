@@ -1,5 +1,6 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
+      layout:decorate="~{layout/index.html}" 
+       xmlns:th="http://www.thymeleaf.org">
 
     <section layout:fragment="content">
         <div class="container">
@@ -35,7 +36,10 @@
                                    onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
                         </tr >
                     </tbody>
+                    
                 </table>
+                <nav th:replace="paginator-nav :: paginator"></nav>
             </div>
         </div>
-    </section>       
+    </section> 
+          
