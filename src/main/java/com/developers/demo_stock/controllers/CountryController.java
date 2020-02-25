@@ -35,7 +35,8 @@ public class CountryController {
 
 	@GetMapping("/country")
 	public String city(Model model,@RequestParam(name = "page", defaultValue = "0") int page) {
-		PageRequest pageRequest = PageRequest.of(page, 2);
+		/*se pone el rango de resultado que queremos para paginar*/
+		PageRequest pageRequest = PageRequest.of(page, 10);
 		Page<Country> countryPage = countryService.findAll(pageRequest);
 		PageRender<Country> pageRender = new PageRender<Country>("/country", countryPage);
 		//model.addAttribute("countryList", countryService.getAllCountry());
