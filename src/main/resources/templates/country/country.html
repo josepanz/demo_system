@@ -3,6 +3,13 @@
        xmlns:th="http://www.thymeleaf.org">
 
     <section layout:fragment="content">
+    <!--  descarcar luego el query y ordenar el codigo javascript-->
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>    
+    
+     <div class="input-group"> <span class="input-group-addon">Buscar</span>
+        <input id="filtrar" type="text" class="form-control" placeholder="Ingrese algún dato">
+      </div>
+
         <div class="container">
             <div class="row">
                 <p>
@@ -18,7 +25,7 @@
                     <th>Editar</th>
                     <th>Eliminar</th>
                     </thead>
-                    <tbody>                   
+                    <tbody class="buscar">                   
                         <tr th:each="country: ${countryList}">
                             <td th:text="${country.id}"></td>
                             <td th:text="${country.code}"/></td>
@@ -41,5 +48,25 @@
                 <nav th:replace="paginator-nav :: paginator"></nav>
             </div>
         </div>
+  <script type="text/javascript">
+        $(document).ready(function () {
+
+            (function ($) {
+
+                $('#filtrar').keyup(function () {
+
+                    var rex = new RegExp($(this).val(), 'i');
+                    $('.buscar tr').hide();
+                    $('.buscar tr').filter(function () {
+                        return rex.test($(this).text());
+                    }).show();
+
+                })
+
+            }(jQuery));
+
+        });
+      </script>    
     </section> 
+    
           
