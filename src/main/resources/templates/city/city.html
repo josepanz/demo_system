@@ -21,6 +21,15 @@
                     <th>Editar</th>
                     <th>Eliminar</th>
                     </thead>
+                    <tfoot>
+                        <th>Id</th>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Departamento</th>
+                    <th>Fecha Agregada</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    </tfoot>
                     <tbody>                   
                         <tr th:each="city: ${cityList}">
                             <td th:text="${city.id}"></td>

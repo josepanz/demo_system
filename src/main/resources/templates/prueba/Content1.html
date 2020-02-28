@@ -12,57 +12,37 @@
 <body>
 	<table id="tabla" class="display" cellspacing="0" width="100%">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-                <th>FECHA</th>
-            </tr>
-        </thead>
- 
-        <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-                <th>FECHA</th>
-            </tr>
-        </tfoot>
+           <th>Id</th>
+                    <th>CÃ³digo</th>
+                    <th>DescripciÃ³n</th>
+                    <th>Departamento</th>
+                    <th>Fecha Agregada</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    </thead>
+                    <tfoot>
+                        <th>Id</th>
+                    <th>CÃ³digo</th>
+                    <th>DescripciÃ³n</th>
+                    <th>Departamento</th>
+                    <th>Fecha Agregada</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    </tfoot>
  
         <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
-                <td>fecha</td>
-            </tr>
-            <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
-                <td>2011/07/25</td>
-                <td>$170,750</td>
-                  <td>fecha</td>
-            </tr>
-            <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-                <td>66</td>
-                <td>2009/01/12</td>
-                <td>$86,000</td>
-                  <td>fecha</td>
-            </tr>
+           <tr th:each="city: ${cityList}">
+                            <td th:text="${city.id}"></td>
+                            <td th:text="${city.code}"/></td>
+                            <td th:text="${city.description}"/></td>
+                            <td th:text="${city.departament.getDescription()}"/></td>
+                            <td th:text="${city.creation_date}"/></td>                                                                                          
+                            <td><a class="btn btn-primary btn-xs"
+                                   th:href="@{/editCity/} + ${city.id}" th:text="'editar'"></a></td>
+                            <td><a class="btn btn-danger btn-xs"
+                                   th:href="@{/deleteCity/} + ${city.id}" th:text="'eliminar'"
+                                   onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
+                        </tr >
            
         </tbody>
     </table>
