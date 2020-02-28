@@ -1,17 +1,12 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/index.html}"  xmlns:th="http://www.thymeleaf.org"> 
     <section layout:fragment="content">
-
-	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-	<script src="paginator/js/table.js"></script>
-	
         <div class="container">
             <div class="row">
                 <p>
                     <a href="addCity" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>Agregar</a>
                 </p>
-                <table id="tabla"  class="table table-bordered table-striped table-hover">
+                <table id="tabla" class="table table-bordered table-striped table-hover">
                     <thead>
                     <th>Id</th>
                     <th>Código</th>
@@ -30,8 +25,8 @@
                     <th>Editar</th>
                     <th>Eliminar</th>
                     </tfoot>
-                    <tbody>                   
-                        <tr th:each="city: ${cityList}">
+        <tbody>
+           <tr th:each="city: ${cityList}">
                             <td th:text="${city.id}"></td>
                             <td th:text="${city.code}"/></td>
                             <td th:text="${city.description}"/></td>
@@ -42,9 +37,9 @@
                             <td><a class="btn btn-danger btn-xs"
                                    th:href="@{/deleteCity/} + ${city.id}" th:text="'eliminar'"
                                    onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
-                        </tr >
-                    </tbody>
-                </table>
+           </tr>          
+        </tbody>
+    </table>
             </div>
         </div>
     </section>       

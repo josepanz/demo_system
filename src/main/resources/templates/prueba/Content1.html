@@ -4,15 +4,15 @@
 	<meta charset="UTF-8">
 	<title>datatable</title>
 	<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
-	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+	<script src="paginator/js/jquery.js"></script>
+	<script type="text/javascript" src="paginator/js/jquery.dataTables.min.js"></script>
 	<script src="paginator/js/table.js"></script>
 
 </head>
 <body>
 	<table id="tabla" class="display" cellspacing="0" width="100%">
-        <thead>
-           <th>Id</th>
+         <thead>
+                    <th>Id</th>
                     <th>CÃ³digo</th>
                     <th>DescripciÃ³n</th>
                     <th>Departamento</th>
@@ -29,7 +29,6 @@
                     <th>Editar</th>
                     <th>Eliminar</th>
                     </tfoot>
- 
         <tbody>
            <tr th:each="city: ${cityList}">
                             <td th:text="${city.id}"></td>
@@ -42,8 +41,7 @@
                             <td><a class="btn btn-danger btn-xs"
                                    th:href="@{/deleteCity/} + ${city.id}" th:text="'eliminar'"
                                    onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
-                        </tr >
-           
+           </tr>          
         </tbody>
     </table>
 </body>
