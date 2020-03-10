@@ -40,7 +40,7 @@ public class UsersController {
     }
 
     @GetMapping("/addUsers")
-    public String getPerson(Map<String, Object> model) {
+    public String getUsers(Map<String, Object> model) {
         Users users = new Users();
         model.put("personIterable", usersService.findAllPerson());
         model.put("users", users);
@@ -49,7 +49,7 @@ public class UsersController {
     }
 
     @PostMapping("/addUsers")
-    public String postPerson(@Valid @ModelAttribute("users") Users users, BindingResult result, Model model,
+    public String postUsers(@Valid @ModelAttribute("users") Users users, BindingResult result, Model model,
             SessionStatus status, RedirectAttributes flash) {
         model.addAttribute("title", "Agregar Usuario");
         model.addAttribute("personIterable", usersService.findAllPerson());
@@ -68,7 +68,7 @@ public class UsersController {
     }
 
     @GetMapping("/editUsers/{id}")
-    public String getEditPerson(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
+    public String getEditUsers(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
         Optional<Users> users = usersService.findById(id);
         model.put("personIterable", usersService.findAllPerson());
         model.put("title", "Editar Usuario");
@@ -77,7 +77,7 @@ public class UsersController {
     }
 
     @PostMapping("/editUsers")
-    public String putEditPerson(@Valid Users users, BindingResult result, Model model,
+    public String putEditUsers(@Valid Users users, BindingResult result, Model model,
             RedirectAttributes flash, SessionStatus status) {
         model.addAttribute("title", "Editar Usuario");
         model.addAttribute("personIterable", usersService.findAllPerson());
@@ -96,7 +96,7 @@ public class UsersController {
     }
 
     @GetMapping("/deleteUsers/{id}")
-    public String deletePerson(@PathVariable(value = "id") Integer id, RedirectAttributes flash) {
+    public String deleteUsers(@PathVariable(value = "id") Integer id, RedirectAttributes flash) {
         try {
             usersService.delete(id);
             flash.addFlashAttribute("success", "Usuario eliminado con éxito!");

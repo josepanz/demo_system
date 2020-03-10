@@ -35,7 +35,10 @@ public class UsersServiceImpl implements UsersService {
     @Override
     @Transactional
     public void save(Users users) {
-        users.setPassword(encoder.encode(users.getPassword()));
+        /*String passEncode ;
+        passEncode = encoder.encode(users.getPassword());
+        users.setPassword(passEncode);*/
+        users.setActive(true);
         usersRepo.save(users);
     }
 

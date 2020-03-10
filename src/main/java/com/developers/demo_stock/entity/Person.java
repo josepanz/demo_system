@@ -35,7 +35,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "civil_status_id")
     private CivilStatus civilStatus;
 
@@ -59,7 +59,7 @@ public class Person {
     @Column
     private Date disabled_date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "person_type_id")
     private PersonType personType;
 
